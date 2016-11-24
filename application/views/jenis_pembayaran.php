@@ -26,18 +26,28 @@
                  <div class="form-group">
                    <label for="">Periode Transaksi Bulanan</label>
                    <div class="row">
-
-                     <div class="col-sm-4">
+                     <div class="col-sm-6">
                        <div class="radio">
-                           <input type="radio" class="form-control"  name="periode"  required value="ya"> Ya
+                           <input type="radio" class="form-control"  name="periode"  required value="bln"> Bulanana
                        </div>
                      </div>
                      <div class="col-sm-6">
                        <div class="radio">
-                           <input type="radio" class="form-control"  name="periode" checked value="tidak"> Tidak
+                           <input type="radio" class="form-control"  name="periode" checked value="6bln"> 6 Bulanan
                        </div>
                      </div>
-
+                   </div>
+                   <div class="row">
+                     <div class="col-sm-6">
+                       <div class="radio">
+                           <input type="radio" class="form-control"  name="periode"  required value="thn"> Tahunan
+                       </div>
+                     </div>
+                     <div class="col-sm-6">
+                       <div class="radio">
+                           <input type="radio" class="form-control"  name="periode" checked value="tdk"> Tidak ditentukan
+                       </div>
+                     </div>
                    </div>
                  </div>
                  <div class="form-group">
@@ -75,7 +85,7 @@
                            <tr>
                                <th style="width:10%">Kode</th>
                                <th style="width:40%">Nama</th>
-                               <th style="width:10%">Bulanan</th>
+                               <th style="width:10%">Periode</th>
                                <th style="width:20%">Jenis</th>
                                <th style="width:20%; text-align:center">#</th>
                            </tr>
@@ -85,12 +95,12 @@
                            <tr>
                                <td>{kode}</td>
                                <td>{nama}</td>
-                               <td>{periode_bulanan}</td>
+                               <td>{periode}</td>
                                <td>{jenis}</td>
                                <td style="text-align:center">
-                                 <a title="Ubah data {nama}" href="<?php echo site_url('bjenispembayaran/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
+                                 <a title="Ubah data {nama}" href="<?php echo site_url('jenispembayaran/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
                                  &nbsp  &nbsp
-                                 <a title="Hapus data {nama}" href="<?php echo site_url('bjenispembayaran/actdelete/{id}') ?>"><i style="color:red" class="ti-close"></i></a>
+                                 <a title="Hapus data {nama}" href="<?php echo site_url('jenispembayaran/actdelete/{id}') ?>"><i style="color:red" class="ti-close"></i></a>
                                </td>
                            </tr>
                            {/data_content}

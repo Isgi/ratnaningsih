@@ -469,7 +469,7 @@ hr {
   min-height: 100%; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/conacelelena\/paper-dashboard\/assets\/sass\/paper\/_sidebar-and-main-panel\.scss}line{font-family:\00003169}}
   .main-panel > .content {
-    padding: 30px 15px;
+    padding: 5px 15px;
     min-height: calc(100% - 123px); }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/conacelelena\/paper-dashboard\/assets\/sass\/paper\/_sidebar-and-main-panel\.scss}line{font-family:\00003174}}
   .main-panel > .footer {
@@ -1590,7 +1590,7 @@ textarea.form-control {
     color: #EB5E28; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/conacelelena\/paper-dashboard\/assets\/sass\/paper\/_dropdown\.scss}line{font-family:\000031}}
-.dropdown-menu {
+/*.dropdown-menu {
   background-color: #FFFCF5;
   border: 0 none;
   border-radius: 6px;
@@ -1603,7 +1603,7 @@ textarea.form-control {
   opacity: 0;
   filter: alpha(opacity=0);
   -webkit-box-shadow: 0 2px rgba(17, 16, 15, 0.1), 0 2px 10px rgba(17, 16, 15, 0.1);
-  box-shadow: 0 2px rgba(17, 16, 15, 0.1), 0 2px 10px rgba(17, 16, 15, 0.1); }
+  box-shadow: 0 2px rgba(17, 16, 15, 0.1), 0 2px 10px rgba(17, 16, 15, 0.1); }*/
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/conacelelena\/paper-dashboard\/assets\/sass\/paper\/_dropdown\.scss}line{font-family:\0000316}}
   .open .dropdown-menu {
     opacity: 1;

@@ -30,7 +30,7 @@
     	 <div class="sidebar-wrapper">
           <div class="logo">
               <a href="http://www.creative-tim.com" class="simple-text">
-                  YAC <small>Admin</small>
+                  Ratnaningsih <small>Admin</small>
               </a>
           </div>
 
@@ -81,7 +81,7 @@
 </div>
 
 
-<script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<!-- <script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> -->
 <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 <script src="<?php echo base_url() ?>assets/js/back/paper-dashboard.js"></script>
 </body>

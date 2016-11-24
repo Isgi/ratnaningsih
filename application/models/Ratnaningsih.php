@@ -113,6 +113,10 @@ class Ratnaningsih extends CI_Model{
     $query = $this->db->get_where('jenis_transaksi',$data);
     return $query;
   }
+  public function updateJenisPembayaran($data){
+    $this->db->where('id', $data['id'])
+    ->update('jenis_transaksi', $data);
+  }
 
 
   //item Pembayaran
@@ -146,6 +150,82 @@ class Ratnaningsih extends CI_Model{
     ->join('kelas', 'kelas.id = murid.kelas')
     ->join('sekolah', 'sekolah.id = kelas.sekolah')
     ->get('murid');
+    return $query;
+  }
+  public function searchSiswa($kata_cari){
+    $query = $this->db->select('id,no_induk,nama')
+    ->like('nama',$kata_cari)
+    ->or_like('no_induk',$kata_cari)
+    ->get('murid');
+    return $query;
+  }
+  public function getSiswaById($id){
+    $query = $this->db->select('murid.id, murid.nama, murid.program, sekolah.derajat')
+    ->join('kelas','kelas.id=murid.kelas')
+    ->join('sekolah','sekolah.id=kelas.sekolah')
+    ->get_where('murid', array('murid.id' => $id ));
+    return $query;
+  }
+  public function getSiswaItemTransaksi($siswa){
+    $query = $this->db->select('item_transaksi.id, jenis_transaksi.nama, harga, sekolah.derajat')
+    ->join('jenis_transaksi','jenis_transaksi.id = item_transaksi.jenis_transaksi')
+    ->join('sekolah', 'item_transaksi.sekolah = sekolah.id')
+    ->where('sekolah.derajat',$siswa['derajat'])
+    ->where('item_transaksi.program='.$siswa['program'].' OR item_transaksi.program=1')
+    ->get('item_transaksi');
+    return $query;
+  }
+
+
+
+  //transaksi
+  public function insertTransaksi($data){
+    $this->db->insert('transaksi', $data);
+  }
+  public function getTransaksi(){
+    $query = $this->db->select('transaksi.id, transaksi.tgl, dibayarkan, item_transaksi.harga, jenis_transaksi.nama as nama_transaksi, murid.no_induk, murid.nama as nama_murid, kelas.nama as nama_kelas, sekolah.derajat')
+    ->join('item_transaksi','item_transaksi.id = transaksi.item_transaksi')
+    ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
+    ->join('murid','murid.id = transaksi.murid')
+    ->join('kelas','kelas.id = murid.kelas')
+    ->join('sekolah','sekolah.id = kelas.sekolah')
+    ->get('transaksi');
+    return $query;
+  }
+  // public function getKekuranganTransaksi($id_siswa){
+  //   $this->db->select('transaksi.dibayarkan, ');
+  // }
+  public function getTransaksiHarian($tgl){
+    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, program.nama as program, murid.nama as murid, murid.no_induk')
+    ->join('item_transaksi', 'item_transaksi.id = transaksi.item_transaksi')
+    ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
+    ->join('program', 'program.id = item_transaksi.program')
+    ->join('murid', 'murid.id = transaksi.murid')
+    ->where('DATE(tgl)',$tgl)
+    ->get('transaksi');
+    return $query;
+  }
+
+  public function getTransaksibulanan($bln){
+    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, program.nama as program, murid.nama as murid, murid.no_induk')
+    ->join('item_transaksi', 'item_transaksi.id = transaksi.item_transaksi')
+    ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
+    ->join('program', 'program.id = item_transaksi.program')
+    ->join('murid', 'murid.id = transaksi.murid')
+    ->where('YEAR(tgl)',date('Y',strtotime($bln)))
+    ->where('MONTH(tgl)',date('m',strtotime($bln)))
+    ->get('transaksi');
+    return $query;
+  }
+
+  public function getTransaksitahunan($thn){
+    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, program.nama as program, murid.nama as murid, murid.no_induk')
+    ->join('item_transaksi', 'item_transaksi.id = transaksi.item_transaksi')
+    ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
+    ->join('program', 'program.id = item_transaksi.program')
+    ->join('murid', 'murid.id = transaksi.murid')
+    ->where('YEAR(tgl)',$thn)
+    ->get('transaksi');
     return $query;
   }
 }

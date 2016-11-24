@@ -2,18 +2,18 @@ var fixedTop = false;
 
 var navbar_initialized = false;
 
-$(document).ready(function(){
-    window_width = $(window).width();
-
-    // Init navigation toggle for small screens
-    if(window_width <= 991){
-        lbd.initRightMenu();
-    }
-
-    //  Activate the tooltips
-    $('[rel="tooltip"]').tooltip();
-
-});
+// $(document).ready(function(){
+//     window_width = $(window).width();
+//
+//     // Init navigation toggle for small screens
+//     if(window_width <= 991){
+//         lbd.initRightMenu();
+//     }
+//
+//     //  Activate the tooltips
+//     $('[rel="tooltip"]').tooltip();
+//
+// });
 
 // activate collapse right menu when the windows is resized
 $(window).resize(function(){

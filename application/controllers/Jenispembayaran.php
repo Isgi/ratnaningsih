@@ -40,14 +40,29 @@ class Jenispembayaran extends CI_Controller{
 
   public function edit($id){
     $data_edit = $this->ratnaningsih->getjenispembayaranby(array('id' => $id))->result();
-    $data_content = $this->ratnaningsih->getjenispembayaran()->result();
+
     $data_page    = array(
-    'title'     => 'Jenis Pembayaran',
+    'title'     => 'Edit Jenis Pembayaran '.$data_edit[0]->nama,
     'button'    => '',
     'side_bar'  => $this->ratnaningsih->getmenu()->result(),
-    'content'   => $this->parser->parse('jenis_pembayaran', array('data_content'=>$data_content, 'data_edit' => $data_edit),true)
+    'content'   => $this->parser->parse('jenis_pembayaran_edit', array('data_edit' => $data_edit),true)
     );
     $this->parser->parse('main', $data_page);
   }
 
+  public function actEdit(){
+    $id             = $this->input->post('id');
+    $kode           = $this->input->post('kode');
+    $nama_transaksi = $this->input->post('nama');
+    $periode        = $this->input->post('periode');
+    $jenis          = $this->input->post('jenis');
+
+    $data_jenis_pembayaran = array('id'               => $id,
+                                   'kode'             => $kode,
+                                   'nama'             => $nama_transaksi,
+                                   'periode'          => $periode,
+                                   'jenis'            => $jenis);
+    $this->ratnaningsih->updatejenispembayaran($data_jenis_pembayaran);
+    redirect('jenispembayaran');
+  }
 }

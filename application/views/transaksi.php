@@ -2,99 +2,84 @@
 <link href="<?php echo base_url() ?>assets/css/back/dataTables.bootstrap.css" rel="stylesheet" />
 <link href="<?php echo base_url() ?>assets/css/back/style.css" rel="stylesheet">
 <div class="row">
-        <!--Default Pannel, Primary Panel And Success Panel   -->
-    <div class="table-responsive">
-        <table class="table table-striped" id="dataTables-example">
-            <thead>
-                <tr>
-                    <th class="no-sort">No. Induk</th>
-                    <th class="no-sort">Nama</th>
-                    <th class="no-sort">Derajat</th>
-                    <th class="no-sort">Kelas</th>
-                    <th class="no-sort">Pembayaran</th>
-                    <th class="no-sort">Tahun Per.</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="odd gradeX">
-                    <td>1111</td>
-                    <td>Raafi ud</td>
-                    <td>TBIT</td>
-                    <td>A</td>
-                    <td class="center">SPP</td>
-                    <td class="center">2016/1017</td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>1111</td>
-                    <td>Raafi ud</td>
-                    <td>TBIT</td>
-                    <td>B</td>
-                    <td class="center">KAS</td>
-                    <td class="center">2016/1017</td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>1111</td>
-                    <td>Raafi ud</td>
-                    <td>TBIT</td>
-                    <td>B</td>
-                    <td class="center">SEMI</td>
-                    <td class="center">2016/1017</td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>1111</td>
-                    <td>Raafi ud</td>
-                    <td>TBIT</td>
-                    <td>B</td>
-                    <td class="center">SEMII</td>
-                    <td class="center">2016/1017</td>
-                </tr>
+  <div class="col-sm-3">
+      <div class="card">
+        <div class="header">
+            <i class="ti-plus"></i> No Induk / Nama
+        </div>
+        <div class="content">
+          <form  action="{site_url(transaksi/searchsiswa)}" method="get">
+            <div class="from-group">
+              <input type="text" name="cari" placeholder="No Induk / Nama" class="form-control border-input" value="">
+            </div>
+            <br>
+            <div class="form-group">
+              <button type="submit" class="btn btn-default">Cari</button>
+            </div>
+          </form>
+          <hr>
+          <ul class="list-unstyled team-members">
+            <?php if ($data_siswa): ?>
+              {data_siswa}
+                <li>
+                    <div class="row">
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-7">
+                            {nama}
+                            <br />
+                            <span class="text-success"><small>{no_induk}</small></span>
+                        </div>
 
-            </tbody>
-        </table>
-    </div>
-        <!--End Default Pannel, Primary Panel And Success Panel   -->
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Tambah Transaksi</h4>
+                        <div class="col-xs-3 text-right">
+                            <a href="{site_url(transaksi/bayar/)}{id}"><btn title="Bayar" class="btn btn-sm btn-success btn-icon"><i class="ti ti-money"></i></btn></a>
+                        </div>
+                    </div>
+                </li>
+              {/data_siswa}
+            <?php else: ?>
+              <p>Tidak ditemukan...</p
+            <?php endif; ?>
+        </ul>
+        </div>
       </div>
-			<form class="" action="index.html" method="post">
-				<div class="modal-body">
-	        <div class="form-group">
-	            <label>Nama</label>
-	            <input type="typeahead" class="form-control border-input" placeholder="No. Indk / Nama">
-	        </div>
-	        <div class="form-group">
-	            <label>Penyetor</label>
-	            <input type="text" class="form-control border-input" placeholder="Penyetor">
-	        </div>
-          <div class="form-group">
-	            <label>Pembayaran</label>
-              <select class="form-control">
-                <option>UTS</option>
-                <option>SEMI</option>
-                <option>SEMII</option>
-                <option>KAS</option>
-              </select>
-          </div>
-          <div class="form-group">
-	            <label>Jumlah</label>
-	            <input type="text" class="form-control border-input" placeholder="Dalam Rp.">
-	        </div>
-	      </div>
-			</form>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Simpan</button>
-      </div>
+  </div>
+  <div class="col-sm-9">
+    <!--Default Pannel, Primary Panel And Success Panel   -->
+    <div class="">
+      <table class="table table-striped" id="dataTables-example">
+        <thead>
+          <tr>
+            <th class="no-sort">No. Induk</th>
+            <th class="no-sort">Nama</th>
+            <th class="no-sort">Derajat</th>
+            <th class="no-sort">Kelas</th>
+            <th class="no-sort">Pembayaran</th>
+            <th class="no-sort">Dibayarkan</th>
+            <th>Tgl</th>
+            <th class="no-sort">#</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data_content}
+          <tr class="odd gradeX">
+            <td>{no_induk}</td>
+            <td>{nama_murid}</td>
+            <td>{derajat}</td>
+            <td>{nama_kelas}</td>
+            <td>{nama_transaksi}</td>
+            <td>{dibayarkan}</td>
+            <td>{tgl}</td>
+            <td></td>
+          </tr>
+          {/data_content}
+        <tbody>
+      </table>
     </div>
+    <!--End Default Pannel, Primary Panel And Success Panel   -->
   </div>
 </div>
+
+
 
 <!--   Core JS Files   -->
 <script src="<?php echo base_url() ?>assets/vendor/jquery/jquery-1.10.2.js" type="text/javascript"></script>
@@ -104,29 +89,55 @@
 <script src="<?php echo base_url() ?>assets/js/back/dataTables.bootstrap.js"></script>
 
 <script>
+$('#dataTables-siswa').delegate('tbody > tr', 'click', function ()
+{
+    var data =  $('#dataTables-siswa').DataTable().row( this ).data();
+    window.open('<?php echo site_url('siswasiswi/') ?>'+data[0]);
+});
+// $('#dataTables-siswa').dataTable({
+//         // "bLengthChange" : false,
+//
+//
+//     "order": [],
+//     "iDisplayLength": 5,
+//     "bLengthChange" : false,
+//     "info" :false,
+//     // "paging":   false,
+//     // "ordering": false,
+//     "dom": '<"top"f>rtip',
+//     "columnDefs": [ {
+//       "targets"  : 'no-sort',
+//       "orderable": false,
+//     }],
+//     "oLanguage": {
+//       "sProcessing":   "Sedang memproses...",
+//       "sSearch":       "Cari Murid :",
+//       "sUrl":          "",
+//     }
+// });
 $('#dataTables-example').dataTable( {
-        // "bLengthChange" : false,
+            // "bLengthChange" : false,
     "order": [],
     "columnDefs": [ {
-    "targets"  : 'no-sort',
-    "orderable": false,
+      "targets"  : 'no-sort',
+      "orderable": false,
     }],
     "oLanguage": {
-    "sProcessing":   "Sedang memproses...",
-    "sLengthMenu":   "Tampilkan _MENU_ data",
-    "sZeroRecords":  "Tidak ditemukan data yang sesuai",
-    "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-    "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 data",
-    "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-    "sInfoPostFix":  "",
-    "sSearch":       "<i class='ti-search'></i>&nbsp&nbsp&nbsp",
-    "sUrl":          "",
-    "oPaginate": {
-        "sFirst":    "Pertama",
-        "sPrevious": "Sebelumnya",
-        "sNext":     "Selanjutnya",
-        "sLast":     "Terakhir"
+      "sProcessing":   "Sedang memproses...",
+      "sLengthMenu":   "Tampilkan _MENU_ data",
+      "sZeroRecords":  "Tidak ditemukan data yang sesuai",
+      "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+      "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 data",
+      "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+      "sInfoPostFix":  "",
+      "sSearch":       "<i class='ti-search'></i>&nbsp&nbsp&nbsp",
+      "sUrl":          "",
+      "oPaginate": {
+          "sFirst":    "Pertama",
+          "sPrevious": "Sebelumnya",
+          "sNext":     "Selanjutnya",
+          "sLast":     "Terakhir"
+      }
     }
-    }
-    });
+});
 </script>
