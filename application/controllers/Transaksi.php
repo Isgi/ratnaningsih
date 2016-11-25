@@ -16,6 +16,7 @@ class Transaksi extends CI_Controller {
     {
         $data_content = $this->ratnaningsih->getTransaksi()->result();
         $data_page    = array(
+        'notif'     => array('message' => 'Sukses ditambahkan'),
         'title'     => 'Transaksi ',
         'button'    => '',
         'side_bar'  => $this->ratnaningsih->getmenu()->result(),
