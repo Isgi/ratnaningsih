@@ -6,19 +6,19 @@ class Kelas extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-    //Codeigniter : Write Less Do More
+    $this->load->model('mkelas');
     if(!$this->session->userdata('username'))
         redirect('auth');
   }
 
-  function index()
-  {
-    $data_content = $this->ratnaningsih->getkelas()->result();
-    $data_sekolah = $this->ratnaningsih->getsekolah()->result();
+  function index(){
+    $this->load->model('msekolah');
+    $data_content = $this->mkelas->getkelas()->result();
+    $data_sekolah = $this->msekolah->getsekolah()->result();
     $data_page    = array(
     'title'     => 'Kelas ',
     'button'    => '',
-    'side_bar'  => $this->ratnaningsih->getmenu()->result(),
+    'side_bar'  => $this->mmenu->getmenu()->result(),
     'content'   => $this->parser->parse('kelas', array('data_sekolah' => $data_sekolah, 'data_content' => $data_content),true)
     );
     $this->parser->parse('main', $data_page);
@@ -32,8 +32,16 @@ class Kelas extends CI_Controller{
     $data_kelas = array('nama'      => $nama_kelas,
                         'kapasitas' => $kapasitas,
                         'sekolah'   => $sekolah);
-    $this->ratnaningsih->insertkelas($data_kelas);
+    $this->mkelas->insertkelas($data_kelas);
+    if($this->db->affected_rows() > 0)
+      $this->session->set_flashdata('message',"<div class='alert alert-success' role='alert'>Tambah BERHASIL</div>");
+    else
+      $this->session->set_flashdata('message',"<div class='alert alert-danger' role='alert'>Tambah GAGAL</div>");
+    redirect('kelas');
+  }
 
+  public function actDelete($id){
+    $this->mkelas->deletekelas($id);
     redirect('kelas');
   }
 

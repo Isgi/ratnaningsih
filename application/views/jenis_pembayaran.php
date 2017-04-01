@@ -5,15 +5,16 @@
 <div class="row">
      <!--Default Pannel, Primary Panel And Success Panel   -->
      <div class="col-sm-4">
+       <?php
+       if(!empty($this->session->flashdata('message')))
+          echo $this->session->flashdata('message');
+        ?>
        <div class="card">
          <div class="header">
-             <i class="ti-plus"></i> Form Tambah Item Pembayaran
+             <i class="ti-plus"></i> Form Tambah Jenis Pembayaran
          </div>
-
            <div class="content">
-
-
-             <form class="" action="{site_url(bjenispembayaran/actadd)}" method="post">
+             <form class="" action="<?php echo site_url('jenispembayaran/actadd') ?>" method="post">
 
                  <div class="form-group">
                      <label>Kode</label>
@@ -28,14 +29,14 @@
                    <div class="row">
                      <div class="col-sm-6">
                        <div class="radio">
-                           <input type="radio" class="form-control"  name="periode"  required value="bln"> Bulanana
+                           <input type="radio" class="form-control"  name="periode"  required value="bln"> Bulanan
                        </div>
                      </div>
-                     <div class="col-sm-6">
+                     <!-- <div class="col-sm-6">
                        <div class="radio">
                            <input type="radio" class="form-control"  name="periode" checked value="6bln"> 6 Bulanan
                        </div>
-                     </div>
+                     </div> -->
                    </div>
                    <div class="row">
                      <div class="col-sm-6">
@@ -100,7 +101,7 @@
                                <td style="text-align:center">
                                  <a title="Ubah data {nama}" href="<?php echo site_url('jenispembayaran/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
                                  &nbsp  &nbsp
-                                 <a title="Hapus data {nama}" href="<?php echo site_url('jenispembayaran/actdelete/{id}') ?>"><i style="color:red" class="ti-close"></i></a>
+                                 <a href="javascript:void(0);" title="Hapus data {nama}" onclick="actdelete({id})"><i style="color:red" class="ti-close"></i></a>
                                </td>
                            </tr>
                            {/data_content}
@@ -123,6 +124,14 @@
 <script src="<?php echo base_url() ?>assets/js/back/dataTables.bootstrap.js"></script>
 
 <script>
+var url="<?php echo site_url();?>";
+function actdelete(id){
+   var r=confirm("Anda yakin akan menghapus data ini ?")
+    if (r==true)
+      window.location = url+"/jenispembayaran/actdelete/"+id;
+    else
+      return false;
+}
 $('#dataTables-example').dataTable( {
         // "bLengthChange" : false,
     "order": [],

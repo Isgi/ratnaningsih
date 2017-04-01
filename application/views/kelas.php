@@ -5,6 +5,10 @@
 <div class="row">
      <!--Default Pannel, Primary Panel And Success Panel   -->
     <div class="col-sm-4">
+      <?php
+      if(!empty($this->session->flashdata('message')))
+         echo $this->session->flashdata('message');
+       ?>
       <div class="card">
         <div class="header">
             <i class="ti-plus"></i> Form Tambah Kelas
@@ -54,7 +58,9 @@
                           <tr>
                               <td>{nama} <b style="text-transform:uppercase">{derajat}</b></td>
                               <td>{nama_kelas} | {kapasitas_kelas}</td>
-                              <td><a href="#"><i style="color:red" class="ti-close"></i></a></td>
+                              <td>
+                                <a href="javascript:void(0);" title="Hapus data {nama_kelas}" onclick="actdelete({id})"><i style="color:red" class="ti-close"></i></a>
+                              </td>
                           </tr>
                         {/data_content}
                       </tbody>
@@ -74,6 +80,14 @@
 <script src="<?php echo base_url() ?>assets/js/back/dataTables.bootstrap.js"></script>
 
 <script>
+var url="<?php echo site_url();?>";
+function actdelete(id){
+   var r=confirm("Anda yakin akan menghapus data ini ?")
+    if (r==true)
+      window.location = url+"/kelas/actdelete/"+id;
+    else
+      return false;
+}
 $('#dataTables-example').dataTable( {
         // "bLengthChange" : false,
     "order": [],

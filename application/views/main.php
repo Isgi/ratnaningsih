@@ -11,13 +11,13 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="{base_url(assets/vendor/bootstrap/css/bootstrap.min.css)}" rel="stylesheet" />
+    <link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet" />
     <!-- Animation library for notifications   -->
-    <link href="{base_url(assets/css/back/animate.min.css)}" rel="stylesheet"/>
+    <link href="<?php echo base_url('assets/css/back/animate.min.css')?>" rel="stylesheet"/>
     <!--  Paper Dashboard core CSS    -->
-    <link href="{base_url(assets/css/back/paper-dashboard.css)}" rel="stylesheet"/>
+    <link href="<?php echo base_url('assets/css/back/paper-dashboard.css')?>" rel="stylesheet"/>
     <!--  Fonts and icons     -->
-    <link href="{base_url(assets/css/back/themify-icons.css)}" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/back/themify-icons.css')?>" rel="stylesheet">
 
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
@@ -30,7 +30,7 @@
     	 <div class="sidebar-wrapper">
           <div class="logo">
               <a href="http://www.creative-tim.com" class="simple-text">
-                  Ratnaningsih <small>Admin</small>
+                  BAITUSSALAM <small>Admin</small>
               </a>
           </div>
 
@@ -61,11 +61,11 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <!-- <li>
                             <a href="#"><i class="ti-settings"></i><p> Settings</p></a>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="{site_url(auth/actLogout)}"><i class="ti-power-off"></i><p> Log Out</p></a>
+                            <a href="<?php echo site_url('auth/actLogout') ?>"><i class="ti-power-off"></i><p> Log Out</p></a>
                         </li>
                     </ul>
                 </div>
@@ -80,26 +80,9 @@
     </div>
 </div>
 
-{notif}{message}{/notif}
-<script src="{base_url(assets/vendor/bootstrap/js/bootstrap.min.js)}" type="text/javascript"></script>
-<script src="{base_url(assets/js/back/bootstrap-notify.js)}"></script>
-<script src="{base_url(assets/js/back/paper-dashboard.js)}"></script>
-{if {notif}}
-<script type="text/javascript">
-		$(document).ready(function(){
 
-				$.notify({
-						icon: 'ti-gift',
-						message: "{message}"
-
-					},{
-							type: 'success',
-							timer: 2000
-					});
-
-		});
-</script>
-{/if}
+<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.min.js')?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/js/back/paper-dashboard.js')?>"></script>
 </body>
 
 

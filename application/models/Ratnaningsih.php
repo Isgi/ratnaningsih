@@ -5,7 +5,8 @@ class Ratnaningsih extends CI_Model{
 
   public function getMenu()
   {
-    $query = $this->db->get('menu');
+    $query = $this->db->order_by('urutan','ASC')
+    ->get('menu');
 		return $query;
   }
 
@@ -89,6 +90,13 @@ class Ratnaningsih extends CI_Model{
     ->get('kelas');
     return $query;
   }
+  public function getKelasBy($data){
+    $query = $this->db->get_where('kelas',$data);
+    return $query;
+  }
+  public function deleteKelas($id){
+    $this->db->delete('kelas', array('id' => $id));
+  }
 
 
 
@@ -117,6 +125,9 @@ class Ratnaningsih extends CI_Model{
     $this->db->where('id', $data['id'])
     ->update('jenis_transaksi', $data);
   }
+  public function deleteJenisPembayaran($id){
+    $this->db->delete('jenis_transaksi', array('id' => $id));
+  }
 
 
   //item Pembayaran
@@ -137,6 +148,18 @@ class Ratnaningsih extends CI_Model{
     // ->group_by('jenis_transaksi')
     ->get('item_transaksi');
     return $query;
+  }
+  public function getItemPembayaranBy($data){
+    $query = $this->db->get_where('item_transaksi',$data);
+    return $query;
+  }
+  public function updateItemPembayaran($data){
+
+    $this->db->where('id', $data['id'])
+    ->update('item_transaksi', $data);
+  }
+  public function deleteItemPembayaran($id){
+    $this->db->delete('item_transaksi', array('id' => $id));
   }
 
 
@@ -183,12 +206,13 @@ class Ratnaningsih extends CI_Model{
     $this->db->insert('transaksi', $data);
   }
   public function getTransaksi(){
-    $query = $this->db->select('transaksi.id, transaksi.tgl, dibayarkan, item_transaksi.harga, jenis_transaksi.nama as nama_transaksi, murid.no_induk, murid.nama as nama_murid, kelas.nama as nama_kelas, sekolah.derajat')
+    $query = $this->db->select('transaksi.id, transaksi.tgl, dibayarkan, item_transaksi.harga, jenis_transaksi.nama as nama_transaksi, murid.no_induk, murid.nama as nama_murid, kelas.nama as nama_kelas, sekolah.derajat, dibayarkan')
     ->join('item_transaksi','item_transaksi.id = transaksi.item_transaksi')
     ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
     ->join('murid','murid.id = transaksi.murid')
     ->join('kelas','kelas.id = murid.kelas')
     ->join('sekolah','sekolah.id = kelas.sekolah')
+    ->order_by('transaksi.id','DESC')
     ->get('transaksi');
     return $query;
   }
@@ -196,7 +220,7 @@ class Ratnaningsih extends CI_Model{
   //   $this->db->select('transaksi.dibayarkan, ');
   // }
   public function getTransaksiHarian($tgl){
-    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, program.nama as program, murid.nama as murid, murid.no_induk')
+    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, jenis_transaksi.kode as transaksi_kode, program.nama as program, murid.nama as murid, murid.no_induk, transaksi.penyetor, transaksi.tgl, dibayarkan')
     ->join('item_transaksi', 'item_transaksi.id = transaksi.item_transaksi')
     ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
     ->join('program', 'program.id = item_transaksi.program')
@@ -207,7 +231,7 @@ class Ratnaningsih extends CI_Model{
   }
 
   public function getTransaksibulanan($bln){
-    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, program.nama as program, murid.nama as murid, murid.no_induk')
+    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, jenis_transaksi.kode as transaksi_kode, program.nama as program, murid.nama as murid, murid.no_induk, transaksi.penyetor, transaksi.tgl, dibayarkan')
     ->join('item_transaksi', 'item_transaksi.id = transaksi.item_transaksi')
     ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
     ->join('program', 'program.id = item_transaksi.program')
@@ -219,7 +243,7 @@ class Ratnaningsih extends CI_Model{
   }
 
   public function getTransaksitahunan($thn){
-    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, program.nama as program, murid.nama as murid, murid.no_induk')
+    $query = $this->db->select('transaksi.id, harga, jenis_transaksi.nama as transaksi, jenis_transaksi.kode as transaksi_kode, program.nama as program, murid.nama as murid, murid.no_induk, transaksi.penyetor, transaksi.tgl, dibayarkan')
     ->join('item_transaksi', 'item_transaksi.id = transaksi.item_transaksi')
     ->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi.jenis_transaksi')
     ->join('program', 'program.id = item_transaksi.program')

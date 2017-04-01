@@ -5,22 +5,25 @@
 <div class="row">
      <!--Default Pannel, Primary Panel And Success Panel   -->
     <div class="col-sm-4">
+      <?php
+      if(!empty($this->session->flashdata('message')))
+         echo $this->session->flashdata('message');
+       ?>
       <div class="card">
         <div class="header">
             <i class="ti-plus"></i> Form Tambah Item Pembayaran
         </div>
           <div class="content">
-            <form class="" action="<?php echo site_url('bitempembayaran/actadd') ?>" method="post">
+            <form class="" action="<?php echo site_url('itempembayaran/actadd') ?>" method="post">
                 <div class="form-group">
                     <label>Jenis Pembayaran</label>
-                    <select class="form-control" required name="jenis_transaksi">
+                    <select class="form-control" required name="jenis_pembayaran">
                       <option value="">Pilih Jenis Pembayaran ...</option>
                       {data_jenis_pembayaran}
                         <option value="{id}">{nama} ({kode}) -> <small>{jenis}</small></option>
                       {/data_jenis_pembayaran}
                     </select>
                 </div>
-
                 <div class="form-group">
                   <label for="">Program</label>
                   {data_program}
@@ -50,7 +53,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="help-block">
-                  Tabel Jenis Pembayaran
+                  Tabel Item Pembayaran
                 </div>
             </div>
             <div class="panel-body">
@@ -60,19 +63,23 @@
                           <tr>
                               <th style="width:40%">Pembayaran</th>
                               <th style="width:20%">Program</th>
-                              <th style="width:20%">Untuk</th>
-                              <th style="width:30%">Harga</th>
-                              <th style="width:10%">#</th>
+                              <th style="width:10%">Untuk</th>
+                              <th style="width:10%">Harga</th>
+                              <th style="width:20%; text-align:center">#</th>
                           </tr>
                       </thead>
                       <tbody>
                           {data_content}
                           <tr>
-                              <td>{jenis_transaksi}</td>
+                              <td>{jenis_pembayaran}</td>
                               <td>{program}</td>
                               <td><b style="text-transform:uppercase">{derajat}</b></td>
                               <td>{harga}</td>
-                              <td><a href="#"><i style="color:red" class="ti-close"></i></a></td>
+                              <td style="text-align:center">
+                                <a title="Ubah data {jenis_pembayaran}" href="<?php echo site_url('itempembayaran/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
+                                &nbsp  &nbsp
+                                <a href="javascript:void(0);" title="Hapus data {jenis_pembayaran}" onclick="actdelete({id})"><i style="color:red" class="ti-close"></i></a>
+                              </td>
                           </tr>
                           {/data_content}
                       </tbody>
@@ -92,6 +99,14 @@
 <script src="<?php echo base_url() ?>assets/js/back/dataTables.bootstrap.js"></script>
 
 <script>
+var url="<?php echo site_url();?>";
+function actdelete(id){
+   var r=confirm("Anda yakin akan menghapus data ini ?")
+    if (r==true)
+      window.location = url+"/itempembayaran/actdelete/"+id;
+    else
+      return false;
+}
 $('#dataTables-example').dataTable( {
         // "bLengthChange" : false,
     "order": [],

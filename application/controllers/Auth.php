@@ -6,6 +6,7 @@ class Auth extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
+    $this->load->model('muser');
     //Codeigniter : Write Less Do More
   }
 
@@ -19,7 +20,7 @@ class Auth extends CI_Controller{
     $username = $this->input->post('username');
     $password = $this->input->post('password');
 
-    $getUser = $this->ratnaningsih->getUser(array('username' => $username, 'password' => md5($password) ));
+    $getUser = $this->muser->getUser(array('username' => $username, 'password' => md5($password) ));
     if ($getUser->num_rows() == 1) {
             $data_user = $getUser->row_array();
             $sess_data['logged_in'] = TRUE;

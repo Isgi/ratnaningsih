@@ -6,13 +6,10 @@
      <div class="col-sm-6">
        <div class="card">
          <div class="header">
-             <i class="ti-plus"></i> Form Tambah Item Pembayaran
+             <i class="ti-pencil"></i> Form Ubah Jenis Pembayaran
          </div>
-
            <div class="content">
-
-
-             <form class="" action="{site_url(jenispembayaran/actedit)}" method="post">
+             <form class="" action="<?php echo site_url('jenispembayaran/actedit') ?>" method="post">
                {data_edit}
                  <div class="form-group">
                      <label>Kode</label>
@@ -28,7 +25,7 @@
                    <div class="row">
                      <div class="col-sm-6">
                        <div class="radio">
-                           <input type="radio" class="form-control"  "{if {periode}==bln} checked {/if}"  name="periode"  required value="bln"> Bulanana
+                           <input type="radio" class="form-control"  "{if {periode}==bln} checked {/if}"  name="periode"  required value="bln"> Bulanan
                        </div>
                      </div>
                      <div class="col-sm-6">
