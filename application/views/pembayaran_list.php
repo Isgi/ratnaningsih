@@ -50,17 +50,15 @@
             <td><?php echo $data->nama_kelas?></td>
             <td><?php echo $data->nama_pembayaran?></td>
             <td><?php echo $data->jumlah_nominal?></td>
-            <td><?php echo $data->tgl_setoran?></td>
+            <td><?php echo date('d-M-Y', strtotime($data->tgl_setoran))?></td>
             <td><?php
               $hasil = $data->jumlah_nominal - $data->harga;
-              if( $hasil >= 0){echo "Lunas <b> > $hasil</b>";} else{echo "Belum Lunas <b> < $hasil</b>";} ?></td>
+              if( $hasil >= 0){echo "<small>Lunas > $hasil</small>";} else{echo "<small>Belum Lunas  $hasil</small>";} ?></td>
             <td>
               <a title="Lihat Rincian" href="<?php
               $dt = new DateTime($data->tgl_setoran);
               $date = $dt->format('Y-m-d');
               echo site_url('pembayaran/angsuran'.$this->uri->segment(2).'?tanggal='.$date.'&nis='.$data->no_induk.'&pembayaran='.$data->item_pembayaran) ?>">Angsuran</a>
-              <!-- &nbsp  &nbsp
-              <a href="javascript:void(0);" title="Hapus data" onclick="<?php echo "actdelete($data->id)" ?>"><i style="color:red" class="ti-close"></i></a> -->
             </td>
           </tr>
           <?php endforeach; ?>

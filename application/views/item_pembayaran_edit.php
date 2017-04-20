@@ -6,7 +6,7 @@
      <div class="col-sm-6">
        <div class="card">
          <div class="header">
-             <i class="ti-pencil"></i> Form Ubah Item Pembayaran
+             Form Ubah Item Pembayaran
          </div>
            <div class="content">
              <form class="" action="{site_url(itempembayaran/actedit)}" method="post">

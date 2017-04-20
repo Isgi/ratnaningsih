@@ -11,7 +11,7 @@
        ?>
       <div class="card">
         <div class="header">
-            <i class="ti-plus"></i> Form Tambah Kelas
+          Form Tambah Kelas
         </div>
           <div class="content">
             <form action="<?php echo site_url('kelas/actadd') ?>" method="post">

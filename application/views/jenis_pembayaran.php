@@ -11,7 +11,7 @@
         ?>
        <div class="card">
          <div class="header">
-             <i class="ti-plus"></i> Form Tambah Jenis Pembayaran
+             Form Tambah Jenis Pembayaran
          </div>
            <div class="content">
              <form class="" action="<?php echo site_url('jenispembayaran/actadd') ?>" method="post">
@@ -25,7 +25,7 @@
                      <input type="text" name="nama" class="form-control border-input" required placeholder="Nama Pembayaran">
                  </div>
                  <div class="form-group">
-                   <label for="">Periode Transaksi Bulanan</label>
+                   <label for="">Periode Transaksi</label>
                    <div class="row">
                      <div class="col-sm-6">
                        <div class="radio">

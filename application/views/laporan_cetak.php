@@ -51,27 +51,28 @@ class FPDF_AutoWrapTable extends FPDF {
 		$this->SetFillColor(200,200,200);
 		$left = $this->GetX();
 		$this->Cell(20,$h,'NO',1,0,'L',true);
-		$this->SetX($left += 20); $this->Cell(90, $h, 'NO INDUK', 1, 0, 'C',true);
-		$this->SetX($left += 90); $this->Cell(160, $h, 'NAMA', 1, 0, 'C',true);
-		$this->SetX($left += 160); $this->Cell(110, $h, 'TRANSAKSI', 1, 0, 'C',true);
-		$this->SetX($left += 110); $this->Cell(55, $h, 'K.TRANSK', 1, 0, 'C',true);
-		$this->SetX($left += 55); $this->Cell(70, $h, 'PENYETOR', 1, 0, 'C',true);
-    $this->SetX($left += 70); $this->Cell(70, $h, 'PROGRAM', 1, 0, 'C',true);
-		$this->SetX($left += 70); $this->Cell(70, $h, 'DIBAYARKAN', 1, 0, 'C',true);
-		$this->SetX($left += 70); $this->Cell(80, $h, 'KEKURANGAN', 1, 0, 'C',true);
-		$this->SetX($left += 80); $this->Cell(55, $h, 'HARGA', 1, 0, 'C',true);
-		$this->SetX($left += 55); $this->Cell(100, $h, 'TGL & WKTU', 1, 1, 'C',true);
+		$this->SetX($left += 20); $this->Cell(60, $h, 'NO INDUK', 1, 0, 'C',true);
+		$this->SetX($left += 60); $this->Cell(140, $h, 'NAMA', 1, 0, 'C',true);
+    $this->SetX($left += 140); $this->Cell(90, $h, 'ANGKATAN', 1, 0, 'C',true);
+    $this->SetX($left += 90); $this->Cell(90, $h, 'KELAS', 1, 0, 'C',true);
+		$this->SetX($left += 90); $this->Cell(55, $h, 'K. PEMB', 1, 0, 'C',true);
+		$this->SetX($left += 55); $this->Cell(110, $h, 'JENIS. PEMB', 1, 0, 'C',true);
+		$this->SetX($left += 110); $this->Cell(70, $h, 'PENYETOR', 1, 0, 'C',true);
+    $this->SetX($left += 70); $this->Cell(30, $h, 'PG', 1, 0, 'C',true);
+		$this->SetX($left += 30); $this->Cell(55, $h, 'NOMINAL', 1, 0, 'C',true);
+		$this->SetX($left += 55); $this->Cell(55, $h, 'HARGA', 1, 0, 'C',true);
+		$this->SetX($left += 55); $this->Cell(100, $h, 'TANGGAL', 1, 1, 'C',true);
 		//$this->Ln(20);
 
 		$this->SetFont('Arial','',9);
-		$this->SetWidths(array(20,90,160,110,55,70,70,70,80,55,100));
-		$this->SetAligns(array('C','C','L','C','C','L','C','R','R','R','C'));
+		$this->SetWidths(array(20,60,140,90,90,55,110,70,30,55,55,100));
+		$this->SetAligns(array('C','C','C','L','C','C','L','C','C','R','R','C'));
 		$no = 1; $this->SetFillColor(255);
     $jumlah_dibayarkan = 0;
     $jumlah_murid = 0;
     $murid = '';
 		foreach ($this->data_content as $data) {
-      $jumlah_dibayarkan = $jumlah_dibayarkan + $data->dibayarkan;
+      $jumlah_dibayarkan = $jumlah_dibayarkan + $data->nominal;
       if ($murid!=$data->no_induk) {
         $jumlah_murid++;
       }
@@ -80,26 +81,28 @@ class FPDF_AutoWrapTable extends FPDF {
 				'no'=>$no++,
 				'no_induk' => $data->no_induk,
 				'murid' => $data->murid,
-				'pembayaran' => $data->pembayaran,
+        'angkatan' => $data->tahun_ajaran,
+				'kelas' => $data->kelas,
 				'pembayaran_kode' => $data->pembayaran_kode,
+        'pembayaran' => $data->pembayaran,
 				'penyetor' => $data->penyetor,
-				'program' => $data->program,
-				'dibayarkan' => $data->dibayarkan,
-				'kekurangan' => $data->harga-$data->dibayarkan,
+				'program' => ($data->program == 'Reguler' ? 'R' : ($data->program == 'Fullday' ? 'F' : 'H')),
+				'dibayarkan' => $data->nominal,
 				'harga' => $data->harga,
-				'tgl' => $data->tgl
+				'tgl' => date('d-M-Y', strtotime($data->tgl_setoran))
 			);
 			$this->Row (
 				array(
 					$i['no'],
 					$i['no_induk'],
 					$i['murid'],
-					$i['pembayaran'],
+					$i['angkatan'],
+          $i['kelas'],
 					$i['pembayaran_kode'],
+          $i['pembayaran'],
 					$i['penyetor'],
 					$i['program'],
 					$i['dibayarkan'],
-					$i['kekurangan'],
 					$i['harga'],
 					$i['tgl']
 					)

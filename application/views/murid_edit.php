@@ -6,7 +6,7 @@
      <div class="col-sm-6">
        <div class="card">
          <div class="header">
-             <i class="ti-pencil"></i> Form Ubah Item Pembayaran
+             Form Ubah Murid
          </div>
            <div class="content">
              <form class="" action="<?php echo site_url('murid/actedit') ?>" method="post">

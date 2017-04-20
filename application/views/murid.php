@@ -46,7 +46,7 @@
                     <th class="no-sort">Derajat</th>
                     <th class="no-sort">Program</th>
                     <th class="no-sort">Kelas</th>
-                    <th class="no-sort">Tahun Ajar</th>
+                    <th class="no-sort">Th. Ajaran</th>
                     <th class="no-sort">#</th>
                 </tr>
             </thead>
@@ -60,6 +60,8 @@
                     <td>{kelas}</td>
                     <td>{tahun_ajaran}</td>
                     <td class="center">
+                      <a title="Riwayat transaksi {murid}" href="<?php echo site_url('murid/riwayat/{id_murid}') ?>">Riwayat</a>
+                      &nbsp  &nbsp
                       <a title="Ubah data {murid}" href="<?php echo site_url('murid/edit/{id_murid}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
                       &nbsp  &nbsp
                       <a href="javascript:void(0);" title="Hapus data {murid}" onclick="actdelete({id_murid})"><i style="color:red" class="ti-close"></i></a>

@@ -11,7 +11,7 @@
        ?>
       <div class="card">
         <div class="header">
-            <i class="ti-plus"></i> Form Tambah Item Pembayaran
+            Form Tambah Item Pembayaran
         </div>
           <div class="content">
             <form class="" action="<?php echo site_url('itempembayaran/actadd') ?>" method="post">
@@ -20,7 +20,7 @@
                     <select class="form-control" required name="jenis_pembayaran">
                       <option value="">Pilih Jenis Pembayaran ...</option>
                       {data_jenis_pembayaran}
-                        <option value="{id}">{nama} ({kode}) -> <small>{jenis}</small></option>
+                        <option value="{id}">{nama} ({kode})</option>
                       {/data_jenis_pembayaran}
                     </select>
                 </div>

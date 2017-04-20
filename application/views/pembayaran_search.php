@@ -6,7 +6,7 @@
 	   ?>
 	  <div class="card">
 	    <div class="header">
-	        <i class="ti-plus"></i> No Induk / Nama
+	        No Induk / Nama
 	    </div>
 	    <div class="content">
 	      <form  action="<?php echo site_url('pembayaran/search') ?>" method="get">

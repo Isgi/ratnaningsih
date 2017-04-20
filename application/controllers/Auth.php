@@ -28,7 +28,7 @@ class Auth extends CI_Controller{
             $sess_data['jabatan'] = $data_user['jabatan'];
             $sess_data['nama'] = $data_user['nama'];
             $this->session->set_userdata($sess_data);
-            redirect(dashboard);
+            redirect('pembayaran/search');
     }
     else {
         $this->session->set_flashdata('notif','Username or Password is Incorrect');

@@ -30,7 +30,7 @@
     	 <div class="sidebar-wrapper">
           <div class="logo">
               <a href="http://www.creative-tim.com" class="simple-text">
-                  BAITUSSALAM <small>Admin</small>
+                  RATNANINGSIH <small>Admin</small>
               </a>
           </div>
 

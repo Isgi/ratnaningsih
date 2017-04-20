@@ -28,7 +28,7 @@
   <div class="col-sm-7">
     <div class="card">
       <div class="header">
-          <i class="ti-plus"></i> Form Transaksi
+          Form Transaksi
       </div>
       <div class="content">
         <form class="" action="<?php echo site_url('pembayaran/actadd') ?>" method="get">
@@ -139,7 +139,7 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading">Tidak ditentukan</div>
+          <div class="panel-heading">Lain - lain</div>
           <div class="panel-body">
             <p class="text-danger">Kekurangan</p>
             <ul>
