@@ -403,6 +403,29 @@ class Mtransaksi extends CI_Model{
     return $query;
 	}
 
+	public function getLaporanKeuangan($bln=null,$limit=null,$offset=null) {
+		$query = $this->db->select('
+			transaksi.id,
+			transaksi.nama,
+			jenis_transaksi_item.nama as transaksi_item_nama,
+			jenis_transaksi_item.kode as transaksi_item_kode,
+			jenis_transaksi_item.jenis as transaksi_item_jenis,
+			jenis_transaksi.nama as transaksi_nama,
+			jenis_transaksi.kode as transaksi_kode,
+			jenis_transaksi.jenis as transaksi_jenis,
+			tgl_setoran, SUM(nominal) as nominal')
+    ->join('item_transaksi_pendapatan_murid', 'item_transaksi_pendapatan_murid.id = transaksi.item_transaksi_pendapatan_murid', 'left')
+    ->join('jenis_transaksi as jenis_transaksi_item', 'jenis_transaksi_item.id = item_transaksi_pendapatan_murid.jenis_transaksi', 'left')
+		->join('jenis_transaksi', 'jenis_transaksi.id = transaksi.jenis_transaksi', 'left')
+		->group_by('jenis_transaksi_item.kode')
+		->group_by('jenis_transaksi.kode')
+    ->where('YEAR(tgl_setoran)',date('Y',strtotime($bln)))
+    ->where('MONTH(tgl_setoran)',date('m',strtotime($bln)))
+		->order_by('transaksi_item_jenis', 'desc')
+    ->get('transaksi',$limit,$offset);
+    return $query;
+	}
+
 	public function updatePembayaran($data){
 		$this->db->where('id', $data['id'])
 		->update('transaksi', $data);

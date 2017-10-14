@@ -129,4 +129,23 @@ class Laporan extends CI_Controller{
         break;
     }
   }
+
+  function keuangan() {
+    $bln = $this->input->get('tgl');
+    if (empty($bln))
+      $bln = gmdate("Y-m", time()+60*60*7);
+
+    $data_content = $this->mtransaksi->getlaporankeuangan($bln)->result();
+    // print_r('<pre>');
+    // print_r($data_content);
+    // print_r('</pre>');
+    // die();
+    $data_page    = array(
+    'title'     => 'Laporan Keuangan',
+    'button'    => '',
+    'side_bar'  => $this->mmenu->getmenu()->result(),
+    'content'   => $this->parser->parse('laporan_keuangan', array('data_content' => $data_content, 'form_cari' => $bln),true)
+    );
+    $this->parser->parse('main', $data_page);
+  }
 }
