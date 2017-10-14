@@ -19,7 +19,7 @@
       </form>
     </div>
     <div class="col-sm-2">
-      <a href="<?php echo site_url('laporan/cetak/'.$this->uri->segment(2).'?'.$_SERVER['QUERY_STRING']) ?>"><button type="button" class="btn btn-default" name="button">Cetak <i class="ti-printer"></i></button></a>
+      <a href="<?php echo site_url('laporan/keuangancetak?'.$_SERVER['QUERY_STRING']) ?>"><button type="button" class="btn btn-default" name="button">Cetak <i class="ti-printer"></i></button></a>
     </div>
   </div>
 </div>

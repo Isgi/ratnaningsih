@@ -136,10 +136,6 @@ class Laporan extends CI_Controller{
       $bln = gmdate("Y-m", time()+60*60*7);
 
     $data_content = $this->mtransaksi->getlaporankeuangan($bln)->result();
-    // print_r('<pre>');
-    // print_r($data_content);
-    // print_r('</pre>');
-    // die();
     $data_page    = array(
     'title'     => 'Laporan Keuangan',
     'button'    => '',
@@ -147,5 +143,20 @@ class Laporan extends CI_Controller{
     'content'   => $this->parser->parse('laporan_keuangan', array('data_content' => $data_content, 'form_cari' => $bln),true)
     );
     $this->parser->parse('main', $data_page);
+  }
+
+  function keuanganCetak() {
+    $tgl = $this->input->get('tgl');
+    if (empty($tgl)){
+      $tgl = gmdate("Y-m", time()+60*60*7);
+    }
+    $data_content = $this->mtransaksi->getlaporankeuangan($tgl)->result();
+
+    $data_page = array(
+      'data_title' => 'BULAN '.strtoupper(date("F, Y", strtotime($tgl))),
+      'data_content' => $data_content
+    );
+
+    $this->load->view('laporan_keuangan_cetak',$data_page);
   }
 }

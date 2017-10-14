@@ -404,6 +404,9 @@ class Mtransaksi extends CI_Model{
 	}
 
 	public function getLaporanKeuangan($bln=null,$limit=null,$offset=null) {
+		// print_r($bln);
+		// die();
+		// ling lto ki
 		$query = $this->db->select('
 			transaksi.id,
 			transaksi.nama,
