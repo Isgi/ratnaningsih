@@ -9,7 +9,7 @@
              Form Ubah Item Pembayaran
          </div>
            <div class="content">
-             <form class="" action="{site_url(itempembayaran/actedit)}" method="post">
+             <form class="" action="{site_url(itemtransaksimurid/actedit)}" method="post">
                   <input type="hidden" name="id" value="<?php echo $data_edit['id'] ?>">
                    <div class="form-group">
                      <label>Jenis Pembayaran</label>

@@ -3,7 +3,7 @@
 <link href="<?php echo base_url() ?>assets/css/back/style.css" rel="stylesheet">
   <div class="row">
     <!--Default Pannel, Primary Panel And Success Panel   -->
-    <form class="form-inline" action="<?php echo site_url('pembayaran/'.$this->uri->segment(2)) ?>" method="get">
+    <form class="form-inline" action="<?php echo site_url('transaksi/'.$this->uri->segment(2)) ?>" method="get">
         <div class="col-xs-4">
           <div class="input-group">
             <select class="form-control border-input" name="kategori">
@@ -48,7 +48,7 @@
             <td><?php echo $data->nama_murid ?></td>
             <td><?php echo $data->derajat?></td>
             <td><?php echo $data->nama_kelas?></td>
-            <td><?php echo $data->nama_pembayaran?></td>
+            <td><?php echo $data->nama_transaksi?></td>
             <td><?php echo $data->jumlah_nominal?></td>
             <td><?php echo date('d-M-Y', strtotime($data->tgl_setoran))?></td>
             <td><?php
@@ -58,7 +58,7 @@
               <a title="Lihat Rincian" href="<?php
               $dt = new DateTime($data->tgl_setoran);
               $date = $dt->format('Y-m-d');
-              echo site_url('pembayaran/angsuran'.$this->uri->segment(2).'?tanggal='.$date.'&nis='.$data->no_induk.'&pembayaran='.$data->item_pembayaran) ?>">Angsuran</a>
+              echo site_url('transaksi/angsuran'.$this->uri->segment(2).'?tanggal='.$date.'&nis='.$data->no_induk.'&pembayaran='.$data->item_transaksi_pendapatan_murid) ?>">Angsuran</a>
             </td>
           </tr>
           <?php endforeach; ?>

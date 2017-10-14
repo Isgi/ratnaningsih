@@ -40,14 +40,14 @@ class Mmurid extends CI_Model{
     return $query;
   }
   public function getMuridItemPembayaran($murid){
-    $query = $this->db->select('item_pembayaran.id,program.nama as nama_program, jenis_pembayaran.nama, harga, sekolah.derajat')
-    ->join('jenis_pembayaran','jenis_pembayaran.id = item_pembayaran.jenis_pembayaran')
-    ->join('sekolah', 'item_pembayaran.sekolah = sekolah.id')
-    ->join('program', 'item_pembayaran.program = program.id')
-    // ->where("(item_pembayaran.program='".$murid['program']."' OR item_pembayaran.program=1)")
+    $query = $this->db->select('item_transaksi_pendapatan_murid.id,program.nama as nama_program, jenis_transaksi.nama, harga, sekolah.derajat')
+    ->join('jenis_transaksi','jenis_transaksi.id = item_transaksi_pendapatan_murid.jenis_transaksi')
+    ->join('sekolah', 'item_transaksi_pendapatan_murid.sekolah = sekolah.id')
+    ->join('program', 'item_transaksi_pendapatan_murid.program = program.id')
+    // ->where("(item_transaksi_pendapatan_murid.program='".$murid['program']."' OR item_transaksi_pendapatan_murid.program=1)")
     ->where("sekolah.derajat = '".$murid['derajat']."'")
-    ->order_by("jenis_pembayaran.nama","ASC")
-    ->get('item_pembayaran');
+    ->order_by("jenis_transaksi.nama","ASC")
+    ->get('item_transaksi_pendapatan_murid');
     return $query;
   }
   public function updateMurid($data){

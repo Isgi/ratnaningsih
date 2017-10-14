@@ -5,21 +5,21 @@
   if (!empty($data_kekurangan_bulana)) {
     foreach ($data_kekurangan_bulanan as $data1){
       $kekurangan1 = $data1->harga - $data1->nominal;
-      array_push($item, array('id'=>$data1->item_pembayaran,'kekurangan'=>$kekurangan1));
+      array_push($item, array('id'=>$data1->item_transaksi_pendapatan_murid,'kekurangan'=>$kekurangan1));
     }
   }
 
   if (!empty($data_kekurangan_tahunan)) {
     foreach ($data_kekurangan_tahunan as $data2){
       $kekurangan2 = $data2->harga - $data2->nominal;
-      array_push($item, array('id'=>$data2->item_pembayaran,'kekurangan'=>$kekurangan2));
+      array_push($item, array('id'=>$data2->item_transaksi_pendapatan_murid,'kekurangan'=>$kekurangan2));
     }
   }
 
   if (!empty($data_kekurangan_tdk)) {
     foreach ($data_kekurangan_tdk as $data3){
       $kekurangan3 = $data3->harga - $data3->nominal;
-      array_push($item, array('id'=>$data3->item_pembayaran,'kekurangan'=>$kekurangan3));
+      array_push($item, array('id'=>$data3->item_transaksi_pendapatan_murid,'kekurangan'=>$kekurangan3));
     }
   }
 
@@ -31,7 +31,7 @@
           Form Transaksi
       </div>
       <div class="content">
-        <form class="" action="<?php echo site_url('pembayaran/actadd') ?>" method="get">
+        <form class="" action="<?php echo site_url('transaksi/pendapatanmuridactadd') ?>" method="get">
             <input type="hidden" name="id_murid" value="<?php echo $data_murid['id'] ?>">
   	        <div class="form-group">
   	            <label>Nama</label>
@@ -46,7 +46,6 @@
                 <select class="form-control border-input"  onchange="harga()" required name="pembayaran" id="itemTransaksiSelected">
                   <option value="">-- Pilih item pembayaran -- </option>
                   <?php foreach ($data_murid_item_pembayaran as $data):?>
-
                       <option value="<?php echo $data->id ?>" harga="<?php echo $data->harga ?>"><?php echo $data->nama ?> -> <small><?php echo $data->derajat.' '.$data->nama_program ?></small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</option>
                     <?php endforeach ?>
                 </select>

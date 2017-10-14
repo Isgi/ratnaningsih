@@ -9,7 +9,7 @@
 	        No Induk / Nama
 	    </div>
 	    <div class="content">
-	      <form  action="<?php echo site_url('pembayaran/search') ?>" method="get">
+	      <form  action="<?php echo site_url('transaksi/pendapatanmurid') ?>" method="get">
 	        <div class="from-group">
 	          <input type="text" name="cari" placeholder="No Induk / Nama" class="form-control border-input" value="">
 	        </div>
@@ -32,7 +32,7 @@
 	                    </div>
 
 	                    <div class="col-xs-3 text-right">
-	                        <a href="<?php echo site_url('pembayaran/bayar/'.$data->id) ?>"><btn title="Bayar" class="btn btn-sm btn-success btn-icon"><i class="ti ti-money"></i></btn></a>
+	                        <a href="<?php echo site_url('transaksi/pendapatanmuridadd/'.$data->id) ?>"><btn title="Bayar" class="btn btn-sm btn-success btn-icon"><i class="ti ti-money"></i></btn></a>
 	                    </div>
 	                </div>
 	            </li>

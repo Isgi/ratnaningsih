@@ -57,13 +57,24 @@ class Pembayaran extends CI_Controller {
       );
       $this->parser->parse('main', $data_page);
     }
+
+    public function baru(){
+      $data_page    = array(
+        'title'     => 'Transaksi Baru',
+        'button'    => '',
+        'side_bar'  => $this->mmenu->getmenu()->result(),
+        'content'   => $this->parser->parse('transaksi_baru', array(),true)
+      );
+      $this->parser->parse('main', $data_page);
+    }
+
     public function actAdd(){
       $id_murid   = $this->input->get('id_murid');
       $pembayaran  = $this->input->get('pembayaran');
       $penyetor   = $this->input->get('penyetor');
       $nominal    = $this->input->get('nominal');
       $tgl_setoran= $this->input->get('tgl_setoran');
-      
+
 
       $data_pembayaran = array
       (

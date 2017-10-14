@@ -14,7 +14,7 @@
              Form Tambah Jenis Pembayaran
          </div>
            <div class="content">
-             <form class="" action="<?php echo site_url('jenispembayaran/actadd') ?>" method="post">
+             <form class="" action="<?php echo site_url('jenistransaksi/actadd') ?>" method="post">
 
                  <div class="form-group">
                      <label>Kode</label>
@@ -99,7 +99,7 @@
                                <td>{periode}</td>
                                <td>{jenis}</td>
                                <td style="text-align:center">
-                                 <a title="Ubah data {nama}" href="<?php echo site_url('jenispembayaran/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
+                                 <a title="Ubah data {nama}" href="<?php echo site_url('jenistransaksi/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
                                  &nbsp  &nbsp
                                  <a href="javascript:void(0);" title="Hapus data {nama}" onclick="actdelete({id})"><i style="color:red" class="ti-close"></i></a>
                                </td>
@@ -128,7 +128,7 @@ var url="<?php echo site_url();?>";
 function actdelete(id){
    var r=confirm("Anda yakin akan menghapus data ini ?")
     if (r==true)
-      window.location = url+"/jenispembayaran/actdelete/"+id;
+      window.location = url+"/jenistransaksi/actdelete/"+id;
     else
       return false;
 }

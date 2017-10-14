@@ -5,7 +5,7 @@
           <i class="ti-plus"></i> Form Transaksi
       </div>
       <div class="content">
-        <form class="" action="<?php echo site_url('pembayaran/actedit/'.$this->uri->segment(3)) ?>" method="get">
+        <form class="" action="<?php echo site_url('transaksi/actedit/'.$this->uri->segment(3)) ?>" method="get">
             <input type="hidden" name="redirect" value="<?php echo $_SERVER['QUERY_STRING']?>">
             <input type="hidden" name="id_pembayaran" value="<?php echo $data_edit['id'] ?>">
   	        <div class="form-group">
@@ -13,7 +13,7 @@
   	            <input type="text" name="penyetor" value="<?php echo $data_edit['penyetor'] ?>" class="form-control border-input"  placeholder="Penyetor">
   	        </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
   	            <label>Pembayaran</label>
                 <select class="form-control border-input" name="pembayaran">
                   <?php foreach ($data_item_pembayaran as $datas): ?>
@@ -24,7 +24,7 @@
                     <?php endif; ?>
                   <?php endforeach; ?>
                 </select>
-            </div>
+            </div> -->
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">

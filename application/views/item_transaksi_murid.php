@@ -14,7 +14,7 @@
             Form Tambah Item Pembayaran
         </div>
           <div class="content">
-            <form class="" action="<?php echo site_url('itempembayaran/actadd') ?>" method="post">
+            <form class="" action="<?php echo site_url('itemtransaksimurid/actadd') ?>" method="post">
                 <div class="form-group">
                     <label>Jenis Pembayaran</label>
                     <select class="form-control" required name="jenis_pembayaran">
@@ -71,14 +71,14 @@
                       <tbody>
                           {data_content}
                           <tr>
-                              <td>{jenis_pembayaran}</td>
+                              <td>{jenis_transaksi}</td>
                               <td>{program}</td>
                               <td><b style="text-transform:uppercase">{derajat}</b></td>
                               <td>{harga}</td>
                               <td style="text-align:center">
-                                <a title="Ubah data {jenis_pembayaran}" href="<?php echo site_url('itempembayaran/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
+                                <a title="Ubah data {jenis_transaksi}" href="<?php echo site_url('itemtransaksimurid/edit/{id}') ?>"><i style="color:orange" class="ti-pencil"></i></a>
                                 &nbsp  &nbsp
-                                <a href="javascript:void(0);" title="Hapus data {jenis_pembayaran}" onclick="actdelete({id})"><i style="color:red" class="ti-close"></i></a>
+                                <a href="javascript:void(0);" title="Hapus data {jenis_transaksi}" onclick="actdelete({id})"><i style="color:red" class="ti-close"></i></a>
                               </td>
                           </tr>
                           {/data_content}
@@ -103,7 +103,7 @@ var url="<?php echo site_url();?>";
 function actdelete(id){
    var r=confirm("Anda yakin akan menghapus data ini ?")
     if (r==true)
-      window.location = url+"/itempembayaran/actdelete/"+id;
+      window.location = url+"/itemtransaksimurid/actdelete/"+id;
     else
       return false;
 }

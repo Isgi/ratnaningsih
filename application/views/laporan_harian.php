@@ -30,23 +30,21 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th class="no-sort">No. Induk</th>
-                    <th class="no-sort">Nama</th>
-                    <th class="no-sort">Program</th>
-                    <th class="no-sort">Jenis</th>
-                    <th class="no-sort">Nominal</th>
-                    <th class="no-sort">Tgl Setoran</th>
+                    <th class="no-sort">TANGGAL</th>
+                    <th class="no-sort">KETERANGAN</th>
+                    <th class="no-sort">KODE</th>
+                    <th class="no-sort">DEBET</th>
+                    <th class="no-sort">KREDIT</th>
                 </tr>
             </thead>
             <tbody>
               <?php foreach ($data_content as $data): ?>
                 <tr class="odd gradeX">
-                    <td><?php echo $data->no_induk?></td>
-                    <td><?php echo $data->murid ?></td>
-                    <td><?php echo $data->program?></td>
-                    <td><?php echo $data->pembayaran?></td>
-                    <td><?php echo $data->nominal?></td>
                     <td><?php echo date('d-M-Y', strtotime($data->tgl_setoran))?></td>
+                    <td><?php echo ($data->murid ? $data->transaksi_item_nama.' '.$data->murid : $data->nama.' '.$data->penyetor) ?></td>
+                    <td><?php echo ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode)?></td>
+                    <td><?php echo ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pemasukan' ? $data->nominal : '') : ($data->transaksi_jenis == 'pemasukan' ? $data->nominal : ''))?></td>
+                    <td><?php echo ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pengeluaran' ? $data->nominal : '') : ($data->transaksi_jenis == 'pengeluaran' ? $data->nominal : ''))?></td>
                 </tr>
               <?php endforeach ?>
             </tbody>

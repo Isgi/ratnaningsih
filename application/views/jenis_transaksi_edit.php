@@ -9,7 +9,7 @@
              Form Ubah Jenis Pembayaran
          </div>
            <div class="content">
-             <form class="" action="<?php echo site_url('jenispembayaran/actedit') ?>" method="post">
+             <form class="" action="<?php echo site_url('jenistransaksi/actedit') ?>" method="post">
                {data_edit}
                  <div class="form-group">
                      <label>Kode</label>

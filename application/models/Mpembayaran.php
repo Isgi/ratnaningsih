@@ -187,42 +187,38 @@ class Mpembayaran extends CI_Model{
   }
 
   public function getPembayaranHarian($tgl,$limit=null,$offset=null){
-
-    $query = $this->db->select('pembayaran.id, harga, jenis_pembayaran.nama as pembayaran, jenis_pembayaran.kode as pembayaran_kode, program.nama as program, murid.nama as murid, murid.no_induk, pembayaran.penyetor, tgl_setoran, nominal, tahun_ajaran, kelas.nama as kelas')
+    $query = $this->db->select('pembayaran.id, harga, jenis_pembayaran.nama as pembayaran, jenis_pembayaran.kode as pembayaran_kode, program.nama as program, murid.nama as murid, murid.no_induk, pembayaran.penyetor, tgl_setoran, nominal')
     ->join('item_pembayaran', 'item_pembayaran.id = pembayaran.item_pembayaran')
     ->join('jenis_pembayaran', 'jenis_pembayaran.id = item_pembayaran.jenis_pembayaran')
     ->join('program', 'program.id = item_pembayaran.program')
     ->join('murid', 'murid.id = pembayaran.murid')
-		->join('kelas', 'kelas.id = murid.kelas')
     ->order_by('no_induk','desc')
-    ->where('DATE(pembayaran.dibuat)',$tgl)
+    ->where('DATE(tgl_setoran)',$tgl)
     ->get('pembayaran',$limit,$offset);
     return $query;
   }
 
   public function getPembayaranBulanan($bln,$limit=null,$offset=null){
-    $query = $this->db->select('pembayaran.id, harga, jenis_pembayaran.nama as pembayaran, jenis_pembayaran.kode as pembayaran_kode, program.nama as program, murid.nama as murid, murid.no_induk, pembayaran.penyetor, tgl_setoran, nominal, tahun_ajaran, kelas.nama as kelas')
+    $query = $this->db->select('pembayaran.id, harga, jenis_pembayaran.nama as pembayaran, jenis_pembayaran.kode as pembayaran_kode, program.nama as program, murid.nama as murid, murid.no_induk, pembayaran.penyetor, tgl_setoran, nominal')
     ->join('item_pembayaran', 'item_pembayaran.id = pembayaran.item_pembayaran')
     ->join('jenis_pembayaran', 'jenis_pembayaran.id = item_pembayaran.jenis_pembayaran')
     ->join('program', 'program.id = item_pembayaran.program')
     ->join('murid', 'murid.id = pembayaran.murid')
-		->join('kelas', 'kelas.id = murid.kelas')
 		->order_by('no_induk','desc')
-    ->where('YEAR(pembayaran.dibuat)',date('Y',strtotime($bln)))
-    ->where('MONTH(pembayaran.dibuat)',date('m',strtotime($bln)))
+    ->where('YEAR(tgl_setoran)',date('Y',strtotime($bln)))
+    ->where('MONTH(tgl_setoran)',date('m',strtotime($bln)))
     ->get('pembayaran',$limit,$offset);
     return $query;
   }
 
   public function getPembayaranTahunan($thn,$limit=null,$offset=null){
-    $query = $this->db->select('pembayaran.id, harga, jenis_pembayaran.nama as pembayaran, jenis_pembayaran.kode as pembayaran_kode, program.nama as program, murid.nama as murid, murid.no_induk, pembayaran.penyetor, tgl_setoran, nominal, tahun_ajaran, kelas.nama as kelas')
+    $query = $this->db->select('pembayaran.id, harga, jenis_pembayaran.nama as pembayaran, jenis_pembayaran.kode as pembayaran_kode, program.nama as program, murid.nama as murid, murid.no_induk, pembayaran.penyetor, tgl_setoran, nominal')
     ->join('item_pembayaran', 'item_pembayaran.id = pembayaran.item_pembayaran')
     ->join('jenis_pembayaran', 'jenis_pembayaran.id = item_pembayaran.jenis_pembayaran')
     ->join('program', 'program.id = item_pembayaran.program')
     ->join('murid', 'murid.id = pembayaran.murid')
-		->join('kelas', 'kelas.id = murid.kelas')
 		->order_by('no_induk','desc')
-    ->where('YEAR(pembayaran.dibuat)',$thn)
+    ->where('YEAR(tgl_setoran)',$thn)
     ->get('pembayaran',$limit,$offset);
     return $query;
   }

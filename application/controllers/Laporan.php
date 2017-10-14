@@ -5,7 +5,7 @@ class Laporan extends CI_Controller{
 
   public function __construct(){
     parent::__construct();
-    $this->load->model('mpembayaran');
+    $this->load->model('mtransaksi');
     if(!$this->session->userdata('username'))
         redirect('auth');
   }
@@ -20,10 +20,15 @@ class Laporan extends CI_Controller{
     if (empty($tgl))
       $tgl = gmdate("Y-m-d", time()+60*60*7);
 
-    $total_laporan = $this->mpembayaran->getpembayaranharian($tgl)->num_rows();
+    $total_laporan = $this->mtransaksi->getpembayaranharian($tgl)->num_rows();
+
     $pagination = $this->mypagination->pagination('laporan/harian',$total_laporan,3);
 
-    $data_content = $this->mpembayaran->getpembayaranharian($tgl,$pagination['per_page'],$pagination['page'])->result();
+    $data_content = $this->mtransaksi->getpembayaranharian($tgl,$pagination['per_page'],$pagination['page'])->result();
+    // print_r('<pre>');
+    // print_r($data_content);
+    // print_r('</pre>');
+    // die();
     $data_page    = array(
       'title'     => 'Laporan '. date("d M y", strtotime($tgl)),
       'button'    => '<a href="{site_url(laporan/harian)}"><button disabled class="btn btn-success">Harian</button></a>
@@ -41,10 +46,10 @@ class Laporan extends CI_Controller{
     if (empty($bln))
       $bln = gmdate("Y-m", time()+60*60*7);
 
-    $total_laporan = $this->mpembayaran->getpembayaranbulanan($bln)->num_rows();
+    $total_laporan = $this->mtransaksi->getpembayaranbulanan($bln)->num_rows();
     $pagination = $this->mypagination->pagination('laporan/bulanan',$total_laporan,3);
 
-    $data_content = $this->mpembayaran->getpembayaranbulanan($bln,$pagination['per_page'],$pagination['page'])->result();
+    $data_content = $this->mtransaksi->getpembayaranbulanan($bln,$pagination['per_page'],$pagination['page'])->result();
     $data_page    = array(
     'title'     => 'Laporan '. date("M Y", strtotime($bln)),
     'button'    => '<a href="{site_url(laporan/harian)}"><button class="btn btn-success">Harian</button></a>
@@ -62,10 +67,10 @@ class Laporan extends CI_Controller{
     if (empty($thn))
       $thn = gmdate("Y", time()+60*60*7);
 
-    $total_laporan = $this->mpembayaran->getpembayarantahunan($thn)->num_rows();
+    $total_laporan = $this->mtransaksi->getpembayarantahunan($thn)->num_rows();
     $pagination = $this->mypagination->pagination('laporan/tahunan',$total_laporan,3);
 
-    $data_content = $this->mpembayaran->getpembayarantahunan($thn,$pagination['per_page'],$pagination['page'])->result();
+    $data_content = $this->mtransaksi->getpembayarantahunan($thn,$pagination['per_page'],$pagination['page'])->result();
     $data_page    = array(
     'title'     => 'Laporan '. date("Y", strtotime($thn)),
     'button'    => '<a href="{site_url(laporan/harian)}"><button class="btn btn-success">Harian</button></a>
@@ -85,9 +90,9 @@ class Laporan extends CI_Controller{
         if (empty($tgl)){
           $tgl = gmdate("Y-m-d", time()+60*60*7);
         }
-        $data_content = $this->mpembayaran->getpembayaranharian($tgl)->result();
+        $data_content = $this->mtransaksi->getpembayaranharian($tgl)->result();
         $data_page = array(
-          'data_title' => 'Harian '.date("d M Y", strtotime($tgl)),
+          'data_title' => strtoupper(date("d F, Y", strtotime($tgl))),
           'data_content' => $data_content
         );
 
@@ -98,10 +103,10 @@ class Laporan extends CI_Controller{
         if (empty($tgl)){
           $tgl = gmdate("Y-m", time()+60*60*7);
         }
-        $data_content = $this->mpembayaran->getpembayaranbulanan($tgl)->result();
+        $data_content = $this->mtransaksi->getpembayaranbulanan($tgl)->result();
 
         $data_page = array(
-          'data_title' => 'Bulanan '.date("M Y", strtotime($tgl)),
+          'data_title' => 'BULAN '.strtoupper(date("F, Y", strtotime($tgl))),
           'data_content' => $data_content
         );
 
@@ -112,10 +117,10 @@ class Laporan extends CI_Controller{
         if (empty($tgl)){
           $tgl = gmdate("Y", time()+60*60*7);
         }
-        $data_content = $this->mpembayaran->getpembayarantahunan($tgl)->result();
+        $data_content = $this->mtransaksi->getpembayarantahunan($tgl)->result();
 
         $data_page = array(
-          'data_title' => 'Tahunan '.date("Y", strtotime($tgl)),
+          'data_title' => 'TAHUN '.strtoupper(date("Y", strtotime($tgl))),
           'data_content' => $data_content
         );
 

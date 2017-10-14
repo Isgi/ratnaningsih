@@ -37,7 +37,7 @@
           <ul class="nav">
             {side_bar}
               <li>
-                  <a href=<?php echo site_url() ?>/{url}>
+                  <a href=<?php echo site_url() ?>{url}>
                       <i class={icon}></i>
                       <p>{nama}</p>
                   </a>

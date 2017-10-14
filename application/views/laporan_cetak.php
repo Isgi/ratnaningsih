@@ -13,7 +13,7 @@ class FPDF_AutoWrapTable extends FPDF {
   		'filename' => '',
   		'destinationfile' => '',
   		'paper_size'=>'A4',
-  		'orientation'=>'L'
+  		'orientation'=>'P'
   	);
 
   	function __construct($data_content = array(), $data_title, $options = array()) {
@@ -34,14 +34,14 @@ class FPDF_AutoWrapTable extends FPDF {
 
 		//header
 		$this->SetFont("", "B", 10);
-		$this->MultiCell(0, 9, 'Laporan transaksi ratnaningsih '.$this->data_title);
+		$this->MultiCell(0, 9, 'LAPORAN ARUS KAS '.$this->data_title);
 		$this->Cell(0, 1, " ", "B");
 		$this->Ln(10);
 		$this->SetFont("", "B", 10);
-		$this->SetX($left); $this->Cell(0, 10, 'LAPORAN TRANSAKSI ', 0, 1,'C');
+		$this->SetX($left); $this->Cell(0, 10, 'ARUS KAS '.$this->data_title, 0, 1,'C');
 		$this->Ln(10);
 		$this->SetFont("", "B", 10);
-		$this->SetX($left); $this->Cell(0, 10, 'RATNANINGSIH KB & TK, '.$this->data_title, 0, 1,'C');
+		$this->SetX($left); $this->Cell(0, 10, 'KB & TK RATNANINGSIH', 0, 1,'C');
 		$this->Ln(10);
 
 		$h = 13;
@@ -51,68 +51,58 @@ class FPDF_AutoWrapTable extends FPDF {
 		$this->SetFillColor(200,200,200);
 		$left = $this->GetX();
 		$this->Cell(20,$h,'NO',1,0,'L',true);
-		$this->SetX($left += 20); $this->Cell(60, $h, 'NO INDUK', 1, 0, 'C',true);
-		$this->SetX($left += 60); $this->Cell(140, $h, 'NAMA', 1, 0, 'C',true);
-    $this->SetX($left += 140); $this->Cell(90, $h, 'ANGKATAN', 1, 0, 'C',true);
-    $this->SetX($left += 90); $this->Cell(90, $h, 'KELAS', 1, 0, 'C',true);
-		$this->SetX($left += 90); $this->Cell(55, $h, 'K. PEMB', 1, 0, 'C',true);
-		$this->SetX($left += 55); $this->Cell(110, $h, 'JENIS. PEMB', 1, 0, 'C',true);
-		$this->SetX($left += 110); $this->Cell(70, $h, 'PENYETOR', 1, 0, 'C',true);
-    $this->SetX($left += 70); $this->Cell(30, $h, 'PG', 1, 0, 'C',true);
-		$this->SetX($left += 30); $this->Cell(55, $h, 'NOMINAL', 1, 0, 'C',true);
-		$this->SetX($left += 55); $this->Cell(55, $h, 'HARGA', 1, 0, 'C',true);
-		$this->SetX($left += 55); $this->Cell(100, $h, 'TANGGAL', 1, 1, 'C',true);
+		$this->SetX($left += 20); $this->Cell(60, $h, 'TANGGAL', 1, 0, 'C',true);
+		$this->SetX($left += 60); $this->Cell(210, $h, 'KETERANGAN', 1, 0, 'C',true);
+    $this->SetX($left += 210); $this->Cell(70, $h, 'KODE', 1, 0, 'C',true);
+    $this->SetX($left += 70); $this->Cell(90, $h, 'DEBIT', 1, 0, 'C',true);
+		$this->SetX($left += 90); $this->Cell(90, $h, 'KREDIT', 1, 1, 'C',true);
 		//$this->Ln(20);
 
 		$this->SetFont('Arial','',9);
-		$this->SetWidths(array(20,60,140,90,90,55,110,70,30,55,55,100));
-		$this->SetAligns(array('C','C','C','L','C','C','L','C','C','R','R','C'));
+		$this->SetWidths(array(20,60,210,70,90,90));
+		$this->SetAligns(array('C','C','L','C','C','R'));
 		$no = 1; $this->SetFillColor(255);
-    $jumlah_dibayarkan = 0;
-    $jumlah_murid = 0;
-    $murid = '';
+    $jumlah_debit = 0;
+    $jumlah_kredit = 0;
 		foreach ($this->data_content as $data) {
-      $jumlah_dibayarkan = $jumlah_dibayarkan + $data->nominal;
-      if ($murid!=$data->no_induk) {
-        $jumlah_murid++;
+      if ($data->transaksi_item_jenis) {
+        if ($data->transaksi_item_jenis == 'pemasukan') {
+          $jumlah_debit = $jumlah_debit + $data->nominal;
+        } else {
+          $jumlah_kredit = $jumlah_kredit + $data->nominal;
+        }
+      } else {
+        if ($data->transaksi_jenis == 'pemasukan') {
+          $jumlah_debit = $jumlah_debit + $data->nominal;
+        } else {
+          $jumlah_kredit = $jumlah_kredit + $data->nominal;
+        }
       }
-      $murid = $data->no_induk;
+
 			$i = array(
 				'no'=>$no++,
-				'no_induk' => $data->no_induk,
-				'murid' => $data->murid,
-        'angkatan' => $data->tahun_ajaran,
-				'kelas' => $data->kelas,
-				'pembayaran_kode' => $data->pembayaran_kode,
-        'pembayaran' => $data->pembayaran,
-				'penyetor' => $data->penyetor,
-				'program' => ($data->program == 'Reguler' ? 'R' : ($data->program == 'Fullday' ? 'F' : 'H')),
-				'dibayarkan' => $data->nominal,
-				'harga' => $data->harga,
-				'tgl' => date('d-M-Y', strtotime($data->tgl_setoran))
+				'tgl_setoran' => date('d-M-Y', strtotime($data->tgl_setoran)),
+				'keterangan' => ($data->murid ? $data->transaksi_item_nama.' '.$data->murid : $data->nama.' '.$data->penyetor),
+        'kode' => ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode),
+				'debit' => ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pemasukan' ? $data->nominal : '') : ($data->transaksi_jenis == 'pemasukan' ? $data->nominal : '')),
+				'kredit' => ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pengeluaran' ? $data->nominal : '') : ($data->transaksi_jenis == 'pengeluaran' ? $data->nominal : ''))
 			);
 			$this->Row (
 				array(
 					$i['no'],
-					$i['no_induk'],
-					$i['murid'],
-					$i['angkatan'],
-          $i['kelas'],
-					$i['pembayaran_kode'],
-          $i['pembayaran'],
-					$i['penyetor'],
-					$i['program'],
-					$i['dibayarkan'],
-					$i['harga'],
-					$i['tgl']
+					$i['tgl_setoran'],
+					$i['keterangan'],
+					$i['kode'],
+          $i['debit'],
+					$i['kredit']
 					)
 				);
 		}
     $this->Cell(10,20,'Keterangan :',0,1);
-    $this->Cell(100,20,'Jumlah Murid ');
-    $this->Cell(10,20,': '.$jumlah_murid,0,1);
-    $this->Cell(100,20,'Jumlah Dibayarkan ');
-    $this->Cell(10,20,': Rp.'.$jumlah_dibayarkan.',-',0,1);
+    $this->Cell(100,20,'Jumlah Debit ');
+    $this->Cell(10,20,': Rp.'.$jumlah_debit.',-',0,1);
+    $this->Cell(100,20,'Jumlah Kredit ');
+    $this->Cell(10,20,': Rp.'.$jumlah_kredit.',-',0,1);
 
 	}
 
@@ -254,7 +244,7 @@ $options = array(
 	'filename' => '', //nama file penyimpanan, kosongkan jika output ke browser
 	'destinationfile' => '', //I=inline browser (default), F=local file, D=download
 	'paper_size'=>'A4',	//paper size: F4, A3, A4, A5, Letter, Legal
-	'orientation'=>'L' //orientation: P=portrait, L=landscape
+	'orientation'=>'P' //orientation: P=portrait, L=landscape
 );
 
 $tabel = new FPDF_AutoWrapTable($data_content,$data_title, $options);

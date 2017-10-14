@@ -201,17 +201,17 @@ class Murid extends CI_Controller{
   }
 
   public function riwayat($id) {
-    $this->load->model('mpembayaran');
+    $this->load->model('mtransaksi');
 
     $data_murid = $this->mmurid->getmuridbyid($id)->row_array();
 
-    $data_kekurangan_bulanan = $this->mpembayaran->getkekuranganbulanan($id)->result();
-    $data_kekurangan_tahunan = $this->mpembayaran->getkekurangantahunan($id)->result();
-    $data_kekurangan_tdk = $this->mpembayaran->getkekurangantdkdiket($id)->result();
+    $data_kekurangan_bulanan = $this->mtransaksi->getkekuranganbulanan($id)->result();
+    $data_kekurangan_tahunan = $this->mtransaksi->getkekurangantahunan($id)->result();
+    $data_kekurangan_tdk = $this->mtransaksi->getkekurangantdkdiket($id)->result();
 
-    $data_lunas_bulanan = $this->mpembayaran->getlunasbulanan($id)->result();
-    $data_lunas_tahunan = $this->mpembayaran->getlunastahunan($id)->result();
-    $data_lunas_tdk = $this->mpembayaran->getlunastdkdiket($id)->result();
+    $data_lunas_bulanan = $this->mtransaksi->getlunasbulanan($id)->result();
+    $data_lunas_tahunan = $this->mtransaksi->getlunastahunan($id)->result();
+    $data_lunas_tdk = $this->mtransaksi->getlunastdkdiket($id)->result();
 
     $data_page    = array(
     'title'     => 'Riwayat Pembayaran '.$data_murid['nama'],
