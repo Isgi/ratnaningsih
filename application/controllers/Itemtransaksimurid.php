@@ -16,7 +16,7 @@ class Itemtransaksimurid extends CI_Controller{
     $this->load->model('mjenistransaksi');
     $this->load->model('mprogram');
     $this->load->model('msekolah');
-    $data_jenis_pembayaran  = $this->mjenistransaksi->getjenistransaksi()->result();
+    $data_jenis_pembayaran  = $this->mjenistransaksi->getjenistransaksipemasukan()->result();
     $data_program           = $this->mprogram->getprogram()->result();
     $data_sekolah           = $this->msekolah->getsekolah()->result();
     $data_content           = $this->mitemtransaksimurid->getitemtransaksimurid()->result();

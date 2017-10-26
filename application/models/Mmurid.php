@@ -33,9 +33,10 @@ class Mmurid extends CI_Model{
     return $query;
   }
   public function getMuridById($id){
-    $query = $this->db->select('murid.id, no_induk, murid.nama, nama_panggilan, ttl, ortu, murid.alamat, murid.program, murid.kelas, sekolah.derajat')
+    $query = $this->db->select('murid.id, no_induk, murid.nama, nama_panggilan, ttl, ortu, murid.alamat, murid.program, program.nama as program, murid.kelas, sekolah.derajat')
     ->join('kelas','kelas.id=murid.kelas')
     ->join('sekolah','sekolah.id=kelas.sekolah')
+    ->join('program', 'program.id=murid.program')
     ->get_where('murid', array('murid.id' => $id ));
     return $query;
   }

@@ -15,7 +15,21 @@
          </div>
            <div class="content">
              <form class="" action="<?php echo site_url('jenistransaksi/actadd') ?>" method="post">
-
+                 <div class="form-group">
+                   <label for="">Dibuat untuk</label>
+                   <div class="row">
+                     <div class="col-sm-6">
+                       <div class="radio">
+                           <input type="radio" class="form-control"  name="jenis" checked required value="pemasukan"> Pemasukan
+                       </div>
+                     </div>
+                     <div class="col-sm-6">
+                       <div class="radio">
+                           <input type="radio" class="form-control"  name="jenis"  value="pengeluaran"> Pengeluaran
+                       </div>
+                     </div>
+                   </div>
+                 </div>
                  <div class="form-group">
                      <label>Kode</label>
                      <input type="text" name="kode" class="form-control border-input" placeholder="Kode" required>
@@ -51,21 +65,7 @@
                      </div>
                    </div>
                  </div>
-                 <div class="form-group">
-                   <label for="">Dibuat untuk</label>
-                   <div class="row">
-                     <div class="col-sm-6">
-                       <div class="radio">
-                           <input type="radio" class="form-control"  name="jenis" checked required value="pemasukan"> Pemasukan
-                       </div>
-                     </div>
-                     <div class="col-sm-6">
-                       <div class="radio">
-                           <input type="radio" class="form-control"  name="jenis"  value="pengeluaran"> Pengeluaran
-                       </div>
-                     </div>
-                   </div>
-                 </div>
+
                <button type="submit" class="btn btn-success">Simpan</button>
 
              </form>

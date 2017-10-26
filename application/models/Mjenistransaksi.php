@@ -10,6 +10,12 @@ class Mjenistransaksi extends CI_Model{
     ->get('jenis_transaksi');
     return $query;
   }
+	public function getJenisTransaksiPemasukan() {
+		$query = $this->db->order_by('nama','ASC')
+		->where('jenis', 'pemasukan')
+    ->get('jenis_transaksi');
+    return $query;
+	}
   public function getJenisTransaksiBy($data){
     $query = $this->db->get_where('jenis_transaksi',$data);
     return $query;

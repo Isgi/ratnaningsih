@@ -22,7 +22,6 @@
       array_push($item, array('id'=>$data3->item_transaksi_pendapatan_murid,'kekurangan'=>$kekurangan3));
     }
   }
-
 ?>
 <div class="row">
   <div class="col-sm-7">
@@ -35,7 +34,10 @@
             <input type="hidden" name="id_murid" value="<?php echo $data_murid['id'] ?>">
   	        <div class="form-group">
   	            <label>Nama</label>
-  	            <input type="text" value="<?php echo $data_murid['nama'] ?>" disabled class="form-control" placeholder="No. Indk / Nama">
+                <div class="input-group">
+                  <input type="text" value="<?php echo $data_murid['nama'] ?>" disabled class="form-control" placeholder="No. Indk / Nama">
+                  <span class="input-group-addon" style="border: 1px solid #ccc5b8"><?php echo $data_murid['program'] ?></span>
+                </div>
   	        </div>
   	        <div class="form-group">
   	            <label>Penyetor</label>
