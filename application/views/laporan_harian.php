@@ -41,10 +41,10 @@
               <?php foreach ($data_content as $data): ?>
                 <tr class="odd gradeX">
                     <td><?php echo date('d-M-Y', strtotime($data->tgl_setoran))?></td>
-                    <td><?php echo ($data->murid ? $data->transaksi_item_nama.' '.$data->murid : $data->nama.' '.$data->penyetor) ?></td>
-                    <td><?php echo ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode)?></td>
-                    <td><?php echo ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pemasukan' ? $data->nominal : '') : ($data->transaksi_jenis == 'pemasukan' ? $data->nominal : ''))?></td>
-                    <td><?php echo ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pengeluaran' ? $data->nominal : '') : ($data->transaksi_jenis == 'pengeluaran' ? $data->nominal : ''))?></td>
+                    <td><?php echo ('<b>'.$data->nama.'</b>, '.$data->penyetor) ?></td>
+                    <td><?php echo ($data->kode)?></td>
+                    <td><?php echo ($data->transaksi_jenis == 'pemasukan' ? $data->nominal : '')?></td>
+                    <td><?php echo ($data->transaksi_jenis == 'pengeluaran' ? $data->nominal : '')?></td>
                 </tr>
               <?php endforeach ?>
             </tbody>

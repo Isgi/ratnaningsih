@@ -58,7 +58,7 @@
               <a title="Lihat Rincian" href="<?php
               $dt = new DateTime($data->tgl_setoran);
               $date = $dt->format('Y-m-d');
-              echo site_url('transaksi/angsuran'.$this->uri->segment(2).'?tanggal='.$date.'&nis='.$data->no_induk.'&pembayaran='.$data->item_transaksi_pendapatan_murid) ?>">Angsuran</a>
+              echo site_url('transaksi/angsuran'.$this->uri->segment(2).'?tanggal='.$date.'&nis='.$data->no_induk.'&pembayaran='.$data->kode) ?>">Angsuran</a>
             </td>
           </tr>
           <?php endforeach; ?>

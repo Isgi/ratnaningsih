@@ -58,7 +58,7 @@ class Itemtransaksimurid extends CI_Controller{
     $data_jenis_pembayaran  = $this->mjenistransaksi->getjenistransaksi()->result();
     $data_program           = $this->mprogram->getprogram()->result();
     $data_sekolah           = $this->msekolah->getsekolah()->result();
-    $data_edit              = $this->mitemtransaksimurid->getitemtransaksimuridby(array('id' => $id))->row_array();
+    $data_edit              = $this->mitemtransaksimurid->getitemtransaksimuridby(array('item_transaksi_pendapatan_murid.id' => $id))->row_array();
 
     $data_page    = array(
     'title'     => 'Edit Item Pembayaran',

@@ -86,17 +86,24 @@ class Transaksi extends CI_Controller {
     }
 
     public function pendapatanMuridActAdd(){
+      $this->load->model('mitemtransaksimurid');
       $id_murid   = $this->input->get('id_murid');
       $pembayaran  = $this->input->get('pembayaran');
       $penyetor   = $this->input->get('penyetor');
       $nominal    = $this->input->get('nominal');
       $tgl_setoran= $this->input->get('tgl_setoran');
 
+      //get jenis transaksi
+
+      $jenis_transaksi = $this->mitemtransaksimurid->getItemTransaksiMuridBy(array('item_transaksi_pendapatan_murid.id' => $pembayaran))->row_array();
 
       $data_pembayaran = array
       (
         'murid'           => $id_murid,
-        'item_transaksi_pendapatan_murid' => $pembayaran,
+        'nama'            => $jenis_transaksi['nama'],
+        'kode'            => $jenis_transaksi['kode'],
+        'harga'           => $jenis_transaksi['harga'],
+        'jenis_transaksi' => $jenis_transaksi['jenis_transaksi_id'],
         'penyetor'        => $penyetor,
         'nominal'         => $nominal,
         'tgl_setoran'     => $tgl_setoran,
@@ -185,7 +192,7 @@ class Transaksi extends CI_Controller {
       $query_param = array(
         'date' => $this->input->get('tanggal'),
         'nis' => $this->input->get('nis'),
-        'item_transaksi_pendapatan_murid' => $this->input->get('pembayaran')
+        'kode' => $this->input->get('pembayaran')
       );
 
       $data_content = $this->mtransaksi->getAngsuranBulanan($query_param)->result();
@@ -210,7 +217,7 @@ class Transaksi extends CI_Controller {
       $query_param = array(
         'date' => $this->input->get('tanggal'),
         'nis' => $this->input->get('nis'),
-        'item_transaksi_pendapatan_murid' => $this->input->get('pembayaran')
+        'kode' => $this->input->get('pembayaran')
       );
 
       $data_content = $this->mtransaksi->getAngsuranTahunan($query_param)->result();
@@ -235,7 +242,7 @@ class Transaksi extends CI_Controller {
       $query_param = array(
         'date' => $this->input->get('tanggal'),
         'nis' => $this->input->get('nis'),
-        'item_transaksi_pendapatan_murid' => $this->input->get('pembayaran')
+        'kode' => $this->input->get('pembayaran')
       );
 
       $data_content = $this->mtransaksi->getAngsuranTdk($query_param)->result();
@@ -334,18 +341,21 @@ class Transaksi extends CI_Controller {
     }
 
     public function pendapatanLainlainActAdd(){
+      $this->load->model('mjenistransaksi');
       $nama_pendapatan    = $this->input->get('nama_pendapatan');
       $penyetor           = $this->input->get('penyetor');
       $keterangan         = $this->input->get('keterangan');
       $nominal            = $this->input->get('nominal');
-      $jenis_transaksi    = 134;
+      $id_jenis_transaksi = 134;
       $tgl_setoran= $this->input->get('tgl_setoran');
 
+      $jenis_transaksi = $this->mjenistransaksi->getJenisTransaksiBy(array('id'=>$id_jenis_transaksi))->row_array();
 
       $data_pembayaran = array
       (
         'nama'           => $nama_pendapatan,
-        'jenis_transaksi' => $jenis_transaksi,
+        'kode'            =>$jenis_transaksi['kode'],
+        'jenis_transaksi' => $jenis_transaksi['id'],
         'penyetor'        => $penyetor,
         'nominal'         => $nominal,
         'keterangan'         => $keterangan,
@@ -407,18 +417,20 @@ class Transaksi extends CI_Controller {
     }
 
     public function pengeluaranActAdd() {
+      $this->load->model('mjenistransaksi');
       $nama   = $this->input->get('nama');
-      $jenis_transaksi  = $this->input->get('jenis_transaksi');
+      $id_jenis_transaksi  = $this->input->get('jenis_transaksi');
       $penyetor   = $this->input->get('penyetor');
       $keterangan = $this->input->get('keterangan');
       $nominal    = $this->input->get('nominal');
       $tgl_setoran= $this->input->get('tgl_setoran');
 
-
+      $jenis_transaksi = $this->mjenistransaksi->getJenisTransaksiBy(array('id'=>$id_jenis_transaksi))->row_array();
       $data_pengeluaran = array
       (
         'nama'           => $nama,
-        'jenis_transaksi' => $jenis_transaksi,
+        'jenis_transaksi' => $jenis_transaksi['id'],
+        'kode'            => $jenis_transaksi['kode'],
         'penyetor'        => $penyetor,
         'nominal'         => $nominal,
         'keterangan' => $keterangan,

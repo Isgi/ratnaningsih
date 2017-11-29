@@ -65,8 +65,8 @@ class FPDF_AutoWrapTable extends FPDF {
     $jumlah_debit = 0;
     $jumlah_kredit = 0;
 		foreach ($this->data_content as $data) {
-      if ($data->transaksi_item_jenis) {
-        if ($data->transaksi_item_jenis == 'pemasukan') {
+      if ($data->transaksi_jenis) {
+        if ($data->transaksi_jenis == 'pemasukan') {
           $jumlah_debit = $jumlah_debit + $data->nominal;
         } else {
           $jumlah_kredit = $jumlah_kredit + $data->nominal;
@@ -82,10 +82,10 @@ class FPDF_AutoWrapTable extends FPDF {
 			$i = array(
 				'no'=>$no++,
 				'tgl_setoran' => date('d-M-Y', strtotime($data->tgl_setoran)),
-				'keterangan' => ($data->murid ? $data->transaksi_item_nama.' '.$data->murid : $data->nama.' '.$data->penyetor),
-        'kode' => ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode),
-				'debit' => ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pemasukan' ? $data->nominal : '') : ($data->transaksi_jenis == 'pemasukan' ? $data->nominal : '')),
-				'kredit' => ($data->transaksi_item_jenis ? ($data->transaksi_item_jenis == 'pengeluaran' ? $data->nominal : '') : ($data->transaksi_jenis == 'pengeluaran' ? $data->nominal : ''))
+				'keterangan' => ($data->nama.', '.$data->penyetor),
+        'kode' => ($data->kode),
+				'debit' => ($data->transaksi_jenis == 'pemasukan' ? $data->nominal : ''),
+				'kredit' => ($data->transaksi_jenis == 'pengeluaran' ? $data->nominal : '')
 			);
 			$this->Row (
 				array(

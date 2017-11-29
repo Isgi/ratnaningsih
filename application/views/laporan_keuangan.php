@@ -35,11 +35,11 @@
             <?php
             $total_pemasukan=0;
             foreach ($data_content as $data): ?>
-              <?php if ($data->transaksi_item_jenis == 'pemasukan' || $data->transaksi_jenis == 'pemasukan'):
+              <?php if ($data->transaksi_jenis == 'pemasukan'):
                 $total_pemasukan = $total_pemasukan+$data->nominal?>
                 <tr class="odd gradeX">
-                  <td><?php echo ($data->transaksi_item_nama ? $data->transaksi_item_nama : $data->transaksi_nama)?></td>
-                  <td><?php echo ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode) ?></td>
+                  <td><?php echo ($data->nama)?></td>
+                  <td><?php echo ($data->transaksi_kode) ?></td>
                   <td><?php echo 'Rp. '.$data->nominal?></td>
                 </tr>
               <?php endif; ?>
@@ -55,11 +55,11 @@
             <?php
             $total_pengeluaran = 0;
             foreach ($data_content as $data): ?>
-              <?php if ($data->transaksi_item_jenis == 'pengeluaran' || $data->transaksi_jenis == 'pengeluaran'):
+              <?php if ($data->transaksi_jenis == 'pengeluaran'):
                 $total_pengeluaran = $total_pengeluaran + $data->nominal?>
                 <tr class="odd gradeX">
-                  <td><?php echo ($data->transaksi_item_nama ? $data->transaksi_item_nama : $data->transaksi_nama)?></td>
-                  <td><?php echo ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode) ?></td>
+                  <td><?php echo ($data->nama)?></td>
+                  <td><?php echo ($data->transaksi_kode) ?></td>
                   <td><?php echo 'Rp. '.$data->nominal?></td>
                 </tr>
               <?php endif; ?>

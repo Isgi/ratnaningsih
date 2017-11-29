@@ -21,7 +21,10 @@ class Mitemtransaksimurid extends CI_Model{
     return $query;
   }
   public function getItemTransaksiMuridBy($data){
-    $query = $this->db->get_where('item_transaksi_pendapatan_murid',$data);
+    $query = $this->db->select('item_transaksi_pendapatan_murid.id as id, jenis_transaksi.id as jenis_transaksi_id, program, jenis_transaksi, sekolah, harga, jenis_transaksi.nama as nama, jenis_transaksi.kode as kode, jenis_transaksi.jenis as jenis')
+		->join('jenis_transaksi', 'jenis_transaksi.id = item_transaksi_pendapatan_murid.jenis_transaksi')
+		->where($data)
+		->get('item_transaksi_pendapatan_murid');
     return $query;
   }
   public function updateItemTransaksiMurid($data){

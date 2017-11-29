@@ -62,11 +62,11 @@ class FPDF_AutoWrapTable extends FPDF {
     $jumlah_pemasukan = 0;
     $jumlah_pengeluaran = 0;
 		foreach ($this->data_content as $data) {
-      if ($data->transaksi_item_jenis == 'pemasukan' || $data->transaksi_jenis == 'pemasukan') {
+      if ($data->transaksi_jenis == 'pemasukan') {
         $jumlah_pemasukan = $jumlah_pemasukan + $data->nominal;
         $i = array(
-  				'transaksi_nama' => ($data->transaksi_item_nama ? $data->transaksi_item_nama : $data->transaksi_nama),
-  				'transaksi_kode' => ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode),
+  				'transaksi_nama' => ($data->nama),
+  				'transaksi_kode' => ($data->transaksi_kode),
           'nominal' => 'Rp. '.$data->nominal
   			);
   			$this->Row (
@@ -89,11 +89,11 @@ class FPDF_AutoWrapTable extends FPDF {
 		$this->SetAligns(array('L','C','R'));
 		$this->SetFillColor(255);
     foreach ($this->data_content as $data) {
-      if ($data->transaksi_item_jenis == 'pengeluaran' || $data->transaksi_jenis == 'pengeluaran') {
+      if ($data->transaksi_jenis == 'pengeluaran') {
         $jumlah_pengeluaran = $jumlah_pengeluaran + $data->nominal;
         $i = array(
-  				'transaksi_nama' => ($data->transaksi_item_nama ? $data->transaksi_item_nama : $data->transaksi_nama),
-  				'transaksi_kode' => ($data->transaksi_item_kode ? $data->transaksi_item_kode : $data->transaksi_kode),
+  				'transaksi_nama' => ($data->nama),
+  				'transaksi_kode' => ($data->transaksi_kode),
           'nominal' => 'Rp. '.$data->nominal
   			);
   			$this->Row (
