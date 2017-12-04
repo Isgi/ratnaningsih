@@ -5,7 +5,7 @@
             <div class="content">
                 <div class="row">
                   <div class="numbers">
-                      <h5 style='text-align: center; color: green; margin:5px'>Pendapatan oleh <b>Murid</b></h5>
+                      <h5 style='text-align: center; color: green; margin:5px'>Pendapatan dari <b>Murid</b></h5>
                   </div>
                 </div>
             </div>

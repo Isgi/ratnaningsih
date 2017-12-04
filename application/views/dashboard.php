@@ -1,6 +1,27 @@
 
 <div class="row">
-    <div class="col-lg-4 col-sm-6">
+  <div class="col-md-6">
+      <div class="card">
+          <div class="header">
+              <h4 class="title">Prosentase SPP</h4>
+              <p class="category">TK & KB Ratnaningsih</p>
+          </div>
+          <div class="content">
+              <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+              <div class="footer">
+                  <div class="chart-legend">
+                      <i class="fa fa-circle text-info"></i> Lunas
+                      <i class="fa fa-circle text-warning"></i> Belum Lunas
+                  </div>
+                  <hr>
+                  <div class="stats">
+                      <i class="ti-timer"></i> <?php echo date("M Y"); ?>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    <div class="col-md-6">
         <div class="card">
             <div class="content">
                 <div class="row">
@@ -19,44 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-sm-6">
-        <div class="card">
-            <div class="content">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-success text-center">
-                            <i class="ti-wallet"></i>
-                        </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>SPP Lunas</p>
-                            <!-- <?php echo $data_lunas['jumlah_lunas'].' murid' ?> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-        <div class="card">
-            <div class="content">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-danger text-center">
-                            <i class="ti-pulse"></i>
-                        </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Kekurangan</p>
-                            <!-- <?php echo $banyak_murid-$data_lunas['jumlah_lunas'].' murid' ?> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -82,28 +66,8 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6">
-      <div class="card">
-          <div class="header">
-              <h4 class="title">Prosentase SPP</h4>
-              <p class="category">TK & KB Ratnaningsih</p>
-          </div>
-          <div class="content">
-              <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-              <div class="footer">
-                  <div class="chart-legend">
-                      <i class="fa fa-circle text-info"></i> Lunas
-                      <i class="fa fa-circle text-warning"></i> Belum Lunas
-                  </div>
-                  <hr>
-                  <div class="stats">
-                      <i class="ti-timer"></i> <?php echo date("M Y"); ?>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+<!--<div class="row">
+    
   <div class="col-md-6">
       <div class="card">
           <div class="header">
@@ -125,7 +89,7 @@
           </div>
       </div>
   </div>
-</div>
+</div>-->
 
 <!--   Core JS Files   -->
 <script src="<?php echo base_url() ?>assets/vendor/jquery/jquery-1.10.2.js" type="text/javascript"></script>

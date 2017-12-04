@@ -2,7 +2,7 @@
   <div class="col-md-4">
     <div class="list-group">
       <a href="#" class="list-group-item disabled">
-        <h5 style='color: green'>Transaksi pendapatan oleh <b>murid</b></h5>
+        <h5 style='color: green'>Transaksi pendapatan dari <b>murid</b></h5>
       </a>
       <a href="<?php echo site_url('transaksi/pendapatanmuridbulananread')?>" class="list-group-item">Bulanan</a>
       <a href="<?php echo site_url('transaksi/pendapatanmuridtahunanread')?>" class="list-group-item">Tahunan</a>
