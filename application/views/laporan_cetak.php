@@ -98,11 +98,28 @@ class FPDF_AutoWrapTable extends FPDF {
 					)
 				);
 		}
-    $this->Cell(10,20,'Keterangan :',0,1);
-    $this->Cell(100,20,'Jumlah Debit ');
-    $this->Cell(10,20,': Rp.'.$jumlah_debit.',-',0,1);
-    $this->Cell(100,20,'Jumlah Kredit ');
-    $this->Cell(10,20,': Rp.'.$jumlah_kredit.',-',0,1);
+    $this->Cell(10,15,'Keterangan :',0,1);
+    $this->Cell(100,15,'Jumlah Debit ');
+    $this->Cell(10,15,': Rp.'.$jumlah_debit.',-',0,1);
+    $this->Cell(100,15,'Jumlah Kredit ');
+    $this->Cell(10,15,': Rp.'.$jumlah_kredit.',-',0,1);
+    $this->Cell(10,15,'',0,1);
+
+    //ttd kiri
+    $this->Cell(200,20,'Mengetahui',0,1, 'C');
+    $this->Cell(200,5,'Pengelola',0,1, 'C');
+    $this->Cell(200,20,'KB-TK Islam Ratnaningsih', 0,1, 'C');
+    $this->Cell(200,90,'.......................................', 0,1, 'C');
+
+    //ttd kanan
+    $this->Cell(850,-250,'Bantul, '.date('d-M-Y'),0,1, 'C');
+    $this->Cell(850,275,'Bendahara',0,1, 'C');
+    $this->Cell(850,-140,'.......................................', 0,1, 'C');
+
+    //ttd tengah
+    $this->Cell(530,170,'Mengetahui',0,1, 'C');
+    $this->Cell(530,-145,'Ketua YPSK Ratnaningsih',0,1, 'C');
+    $this->Cell(530,280,'.......................................', 0,1, 'C');
 
 	}
 
